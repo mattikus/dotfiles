@@ -3,3 +3,9 @@
 	token = 7ccad2e072984ddee68b21cd1512e26f
 [user]
 	email = matt@mattikus.com
+[color]
+	ui = auto
+[alias]
+	st = status
+	ci = commit
+	co = checkout
