@@ -1,0 +1,6 @@
+if [[ -f /usr/bin/firefox-nightly ]]; then
+  exec /usr/bin/firefox-nightly
+else
+  exec /usr/bin/firefox
+fi
+

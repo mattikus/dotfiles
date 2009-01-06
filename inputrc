@@ -1,0 +1,6 @@
+TAB: complete
+set bell-style audible
+set completion-ignore-case on
+set show-all-if-ambiguous on
+set editing-mode vi
+set keymap vi-insert

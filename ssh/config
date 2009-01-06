@@ -1,0 +1,54 @@
+###Classes###
+host opsys
+hostname opsys00.cct.lsu.edu
+user opsys_40
+#############
+
+###Linode VPS###
+host vps
+hostname mattikus.com
+user matt
+forwardAgent yes
+port 64000
+ControlMaster auto
+################
+
+host lish
+hostname dallas56.linode.com
+user mattikus
+
+###Home Machine###
+host jarlaxle
+user matt
+port 64000
+
+host jarlaxle.local
+user matt
+port 64000
+
+host snippy.ath.cx
+user matt
+port 64000
+##################
+
+###Workstation###
+host wh
+user mkemp2
+hostname whitehorse.cct.lsu.edu
+forwardAgent yes
+ControlMaster auto
+forwardAgent yes
+forwardX11trusted yes
+#################
+
+###bitbucket###
+host bb
+hostname bitbucket.org
+compression yes
+###############
+
+###Catch all###
+host *
+user mkemp2
+forwardAgent yes
+###############
