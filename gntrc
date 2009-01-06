@@ -1,0 +1,64 @@
+[GntEntry::binding]
+c-a = cursor-home
+home = cursor-home
+c-e = cursor-end
+end = cursor-end
+backspace = delete-prev
+del = delete-next
+c-d = delete-next
+c-u = delete-start
+c-k = delete-end
+c-b = cursor-prev
+left = cursor-prev
+c-f = cursor-next
+right = cursor-next
+tab = suggest-show
+down = suggest-next
+up = suggest-prev
+c-w = delete-prev-word
+a-b = cursor-prev-word
+a-f = cursor-next-word
+a-d = delete-next-word
+c-v = clipboard-paste
+
+[GntTree::binding]
+up = move-up
+down = move-down
+j = move-down
+k = move-up
+pageup = page-up
+pagedown = page-down
+backspace = move-parent
+# Following is the default binding for the context-menu
+menu = context-menu
+# The following will let you open the context-menu in the buddylist with c-b
+# c-b = context-menu
+
+[GntWidget::binding]
+f11 = context-menu
+
+[GntWindow::binding]
+c-o = show-menu
+f10 = show-menu
+
+[GntWM::binding]
+c-n = window-next
+c-p = window-prev
+a-c = window-close
+a-w = window-list
+a-d = dump-screen
+a-, = shift-left
+a-. = shift-right
+a-a = action-list
+c-m = start-move
+c-r = start-resize
+a-q = wm-quit
+a-l = refresh-screen
+a-s = workspace-list
+a-t = window-tag
+a-T = place-tagged
+a-C = toggle-clipboard
+a-/ = help-for-widget
+# The following action is still incomplete, and doesn't have a default binding
+# switch-window-n
+# Other actions: window-next-urgent, window-prev-urgen

@@ -1,0 +1,30 @@
+[ui]
+username = Matt Kemp <matt@mattikus.com>
+ignore=~/.hgignore
+editor=vim
+
+[extensions]
+color=
+hgext.fetch=
+hgext.extdiff=
+hgext.mq=
+# Requires latest mercurial 
+hgext.rebase=
+hgext.zeroconf=
+hgext.bookmarks=
+
+[extdiff]
+cmd.opendiff = opendiff
+
+[merge-tools]
+filemerge.executable = opendiff-w
+filemerge.args = $local $other -ancestor $base -merge $output
+filemerge.gui = true
+meld.args = $base $local $other
+meld.gui = true
+
+[trusted]
+users = matt, www-data, http
+groups = hg, http
+
+[defaults]
