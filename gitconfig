@@ -1,11 +1,14 @@
 [github]
 	user = mattikus
-	token = 7ccad2e072984ddee68b21cd1512e26f
+	token = c7ecb36edc669fbaec6d3ba43b7f4136
 [user]
 	email = matt@mattikus.com
+	name = Matt Kemp
 [color]
 	ui = auto
 [alias]
 	st = status
 	ci = commit
 	co = checkout
+[branch]
+	autosetumerge = true

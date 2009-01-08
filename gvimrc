@@ -1,8 +1,8 @@
 "Set font based on which gui we're running
 if has("gui_macvim")
-    set gfn=ProggyOptiS:h11
+    set gfn=Terminus:h12
 else
-    set gfn=DejaVu\ Sans\ Mono\ 8
+    set gfn=Terminus\ 12
 endif
 set cul
 set nu
