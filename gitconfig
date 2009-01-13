@@ -12,3 +12,4 @@
 	co = checkout
 [branch]
 	autosetumerge = true
+	autosetupmerge = always
