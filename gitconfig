@@ -11,4 +11,4 @@
 	ci = commit
 	co = checkout
 [branch]
-	autosetumerge = true
+	autosetupmerge = true

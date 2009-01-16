@@ -35,6 +35,7 @@ chatnets = {
 
 channels = (
   { name = "#archlinux"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#archlinux-offtopic"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#fedora"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#bash"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#vim"; chatnet = "freenode"; autojoin = "yes"; },
