@@ -7,7 +7,7 @@ require("naughty")
 
 -- External
 require("shifty")
-require("wicked")
+--require("wicked")
 
 theme_path = ".config/awesome/themes/default/theme"
 beautiful.init(theme_path)
@@ -33,12 +33,12 @@ shifty.config.tags = {
     ["2:term"] = { position = 2, spawn = "urxvtc", layout = "fairh" },
     ["3:www"] = { position = 3, exclusive = true, spawn = "firefox" },
     ["4:chat"] = { position = 4, spawn = "~/bin/irc", layout = "floating" },
-    ["5:email"] = { position = 5, exclusive = true, solitary = true, spawn = "claws-mail"},
+    ["5:email"] = { position = 5, spawn = "claws-mail"},
 }
 shifty.config.apps = {
-    { match = {"Gran Paradiso" }, tag = "3:www", },
-    { match = {"Claws-mail.*" }, tag = "5:email", },
-    { match = {"irc", "Pidgin" }, tag = "4:chat", },
+    { match = { "Gran Paradiso", "Firefox" }, tag = "3:www", },
+    { match = { "Claws-mail", "claws-mail" }, tag = "5:email", },
+    { match = { "irc", "Pidgin" }, tag = "4:chat", },
 }
 shifty.config.defaults = {
   layout = "tile", 
@@ -182,7 +182,7 @@ keybinding({ modkey }, "space", function () awful.layout.inc(layouts, 1) end):ad
 keybinding({ modkey, "Shift" }, "space", function () awful.layout.inc(layouts, -1) end):add()
 
 -- Prompt
-keybinding({ modkey }, "F1", function ()
+keybinding({ modkey }, "grave", function ()
                                  awful.prompt.run({ prompt = "Run: " }, mypromptbox[mouse.screen], awful.util.spawn, awful.completion.bash,
                                                   awful.util.getdir("cache") .. "/history")
                              end):add()
@@ -263,6 +263,10 @@ awful.hooks.manage.register(function (c)
     client.focus = c
     awful.client.setslave(c)
     c.honorsizehints = true
+
+    -- Prevent clients from starting over the status bar
+    awful.placement.no_overlap(c)
+    awful.placement.no_offscreen(c)
 end)
 
 -- Hook function to execute when arranging the screen.
