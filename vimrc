@@ -52,7 +52,6 @@ if version > 700
   if &t_Co > 16
     set cul 
   endif
-  
   "remap ctrl-space to omnicomplete
   inoremap <Nul> <C-x><C-o>
 
@@ -72,10 +71,12 @@ if version > 700
   "set omnicomplete to be default for supertab
   let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
   
-  " Stretches the term window by the width of the number column width
-  let old_col=&co
-  autocmd VimEnter * let &co = (&co + &nuw + 1)
-  autocmd VimLeave * let &co = old_col
+  if $TERM != "linux"
+    " Stretches the term window by the width of the number column width
+    let old_col=&co
+    autocmd VimEnter * let &co = (&co + &nuw + 1)
+    autocmd VimLeave * let &co = old_col
+  endif 
 endif
 
 

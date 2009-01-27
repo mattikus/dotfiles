@@ -1,0 +1,5 @@
+#!/bin/bash
+while true; do
+    echo "[$(date +%D\ %H:%M)]"
+    sleep 1
+done

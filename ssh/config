@@ -19,14 +19,13 @@ user mattikus
 
 ###Home Machine###
 host zaknafein
+hostname zaknafein.local
+hostname zaknafein
 user matt
 port 64000
 
-host zaknafein.local
-user matt
-port 64000
-
-host snippy.ath.cx
+host home
+hostname snippy.ath.cx
 user matt
 port 64000
 ##################
