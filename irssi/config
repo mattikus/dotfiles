@@ -35,10 +35,11 @@ chatnets = {
 
 channels = (
   { name = "#archlinux"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#fedora"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#archlinux-offtopic"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#git"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#github"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#bash"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#vim"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#bitbucket.org"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#python"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#irssi"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#lua"; chatnet = "freenode"; autojoin = "yes"; },
