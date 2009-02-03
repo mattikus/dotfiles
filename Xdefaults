@@ -20,6 +20,7 @@ URxvt.externalBorder:   0
 URxvt.saveLines:        5000
 URxvt.urgentOnBell:     True 
 URxvt.geometry:         80x32
+URxvt.termName:         xterm-256color
 vte.cursorColor:      #dcdccc
 vte.cursorColor2:     cyan
 vte.cursorBlink:      false
