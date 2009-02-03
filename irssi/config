@@ -21,15 +21,12 @@ servers = (
 chatnets = {
   freenode = {
     type = "IRC";
-    autosendcmd = "/msg nickserv identify;wait 1000";
   };
   gamesurge = { 
     type = "IRC"; 
-    autosendcmd = "/authserv auth; wait 1000";
 };
   oftc = { 
     type = "IRC"; 
-    autosendcmd = "/msg nickserv identify;wait 1000";
   };
 };
 
@@ -217,7 +214,7 @@ settings = {
     bell_beeps = "on";
     beep_msg_level = "MSGS NOTICES DCC DCCMSGS HILIGHT QUERIES";
     theme = "elf.theme";
-    window_default_level = "MSGS PUBLICS NOTICES CTCPS ACTIONS JOINS PARTS QUITS KICKS MODES TOPICS NICKS CLIENTCRAP";
+    window_default_level = "MSGS PUBLICS CTCPS ACTIONS JOINS PARTS QUITS KICKS MODES TOPICS NICKS CLIENTCRAP";
   };
 };
 keyboard = (
