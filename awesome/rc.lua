@@ -29,16 +29,15 @@ layouts =
 }
 
 shifty.config.tags = {
-    ["1:sys"] = { position = 1, init = true },
-    ["2:term"] = { position = 2, spawn = "urxvtc", layout = "fairh" },
-    ["3:www"] = { position = 3, exclusive = true, spawn = "firefox" },
-    ["4:chat"] = { position = 4, spawn = "~/bin/irc", layout = "floating" },
-    ["5:email"] = { position = 5, spawn = "claws-mail"},
+    ["1:term"] = { position = 1, init=true, spawn = "urxvtc", layout = "fairh" },
+    ["2:www"] = { position = 2, exclusive = true, spawn = "firefox" },
+    ["3:chat"] = { position = 3, spawn = "~/bin/irc", layout = "floating" },
+    ["4:email"] = { position = 4, spawn = "claws-mail"},
 }
 shifty.config.apps = {
-    { match = { "Gran Paradiso", "Firefox" }, tag = "3:www", },
-    { match = { "Claws-mail", "claws-mail" }, tag = "5:email", },
-    { match = { "irc", "Pidgin" }, tag = "4:chat", },
+    { match = { "Gran Paradiso", "Firefox" }, tag = "2:www", },
+    { match = { "Claws-mail", "claws-mail" }, tag = "4:email", },
+    { match = { "irc", "Pidgin" }, tag = "3:chat", },
 }
 shifty.config.defaults = {
   layout = "tile", 
@@ -288,5 +287,7 @@ awful.hooks.arrange.register(function (screen)
 end)
 
 -- Hook called every second
--- awful.hooks.timer.register(1, function () end)
+awful.hooks.timer.register(1, function () 
+    mytextbox.text = " " .. os.date("%D %H:%M") .. " "
+end)
 -- }}}
