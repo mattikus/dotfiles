@@ -18,22 +18,21 @@ URxvt.scrollBar:        False
 URxvt.internalBorder:   0
 URxvt.externalBorder:   0
 URxvt.saveLines:        5000
-URxvt.urgentOnBell:     True 
+URxvt.urgentOnBell:     True
 URxvt.geometry:         80x32
-vte.cursorColor:      #dcdccc
-vte.cursorColor2:     cyan
-vte.cursorBlink:      false
-vte.cursorUnderline:  true
-vte.underlineColor:   #dcdccc
-vte.font:             -*-terminus-*-*-*-*-12-120-72-*-*-60-iso8859-1
-vte.boldFont:         -*-terminus-*-*-*-*-12-120-72-*-*-60-iso8859-1
-vte.italicFont:       -*-terminus-*-*-*-*-12-120-72-*-*-60-iso8859-1
-vte.scrollBar:        False
-vte.internalBorder:   0
-vte.externalBorder:   0
-vte.saveLines:        5000
-vte.urgentOnBell:     True 
-vte.geometry:         80x32
+XTerm*faceName:         Terminus
+XTerm*faceSize:         8
+XTerm*scrollBar:        False
+XTerm*internalBorder:   0
+XTerm*externalBorder:   0
+XTerm*saveLines:        5000
+XTerm*urgentOnBell:     True
+XTerm*geometry:         80x32
+XTerm*utf8:             2
+XTerm*termName:         xterm-256color
+XTerm*dynamicColors:    true
+XTerm*scrollTtyKeypress:true
+XTerm*scrollTtyOutput:  false
 
 irc.geometry:           89x61
 

@@ -24,8 +24,20 @@ function confmake() {
   ./configure "$@" && make
 }
 
+export TD="$HOME/tmp/$(date +'%m-%d-%Y')"
+function td(){
+    td=$TD
+    if [ ! -z "$1" ]; then
+        td="$HOME/tmp/$(date -d "$1 days" +'%m-%d-%Y')";
+    fi
+    if [ ! -d $td ]; then
+        mkdir -p $td
+        unlink $HOME/tmp/latest; ln -s $td $HOME/tmp/latest
+    fi
+    cd $td; unset td
+}
+
 #Shell Environment Variables
-export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man:/usr/man:$MANPATH"
 export PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/games:${PATH}:/usr/sbin:/sbin"
 export EDITOR="vim"
 export VISUAL="vim"
@@ -34,6 +46,7 @@ export LC_ALL="$LANG"
 export PYTHONSTARTUP="${HOME}/.pythonrc"
 [[ -d /usr/share/doc/python ]] && export PYTHONDOCS="/usr/share/doc/python:$PYTHONDOCS"
 export HISTCONTROL=ignoredups
+export CDPATH=".:~"
 
 #Colorful prompt
 if [ "$PS1" ]; then
@@ -61,3 +74,10 @@ fi
 
 #Include local changes if available
 [[ -f $HOME/.bashrc.local ]] && . "$HOME/.bashrc.local"
+
+#New 4.0 options
+if [[ ${BASH_VERSION::3} == '4.0' ]]; then
+    export PROMPT_DIRTRIM=2
+    shopt -s dirspell
+    shopt -s globstar
+fi
