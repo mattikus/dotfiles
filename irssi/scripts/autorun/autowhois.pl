@@ -1,1 +1,0 @@
-../autowhois.pl

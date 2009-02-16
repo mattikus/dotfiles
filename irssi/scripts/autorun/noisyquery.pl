@@ -1,1 +1,0 @@
-../noisyquery.pl
