@@ -38,6 +38,7 @@ shifty.config.apps = {
     { match = { "Gran Paradiso", "Firefox" }, tag = "2:www", },
     { match = { "Claws-mail", "claws-mail" }, tag = "4:email", },
     { match = { "irc", "Pidgin" }, tag = "3:chat", },
+    { match = { "Compose" }, float = true },
 }
 shifty.config.defaults = {
   layout = "tile", 

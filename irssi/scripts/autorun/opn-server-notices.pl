@@ -1,1 +1,0 @@
-../opn-server-notices.pl
