@@ -1,0 +1,3 @@
+[submodule "j"]
+	path = j
+	url = git://github.com/rupa/j.git

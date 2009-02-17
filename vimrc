@@ -14,7 +14,7 @@ set nowrap
 set t_md= 
 set nohlsearch 
 set incsearch 
-set foldmethod=manual 
+set foldmethod=indent
 set et
 set softtabstop=4
 set ts=4
