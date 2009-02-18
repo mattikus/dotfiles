@@ -45,5 +45,11 @@ if os.environ.get('TERM') in terms:
 else:
 	sys.ps2 = '........ '
 
+# Get the see keyword for better viewing of modules and objects
+try:
+    from see import see
+except ImportError:
+    pass
+
 # Cleanup
 del(terms)
