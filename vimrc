@@ -28,8 +28,6 @@ syn on
 set nu
 set cpo+=|
 set title
-set autochdir
-set completeopt=menuone,longest,preview
 set wildmenu
 "set wildmode=list:longest
 set scrolloff=3
@@ -45,9 +43,11 @@ runtime macros/matchit.vim "Match more than just braces
 set tags+=~/.vim/tags/python.ctags
 "set tags+=~/.vim/tags/systags
 
+"stuff for vim 7
 if version > 700
+  set autochdir
+  set completeopt=menuone,longest,preview
   set nuw=3
-  "stuff for vim 7
   set ve=onemore 
   if &t_Co > 16
     set cul 

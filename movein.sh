@@ -1,17 +1,12 @@
 #!/bin/bash
 
 movein() {
-  hg archive -ttgz /tmp/dotfiles.tar.gz
-  cat /tmp/dotfiles.tar.gz | ssh "$1" "
+    git archive --format tar --prefix .dotfiles/ HEAD | ssh "$1" "
     if [[ -d .dotfiles ]]; 
       then rm -r .dotfiles;
     fi; 
-    tar xz && \
-    mv {,.}dotfiles && \
+    tar x && \
     .dotfiles/create_symlinks.sh"
-
-  #cleanup
-  rm /tmp/dotfiles.tar.gz
 }
 usage() {
   echo "Archives and copies the repo to a machine that does not have mercurial"
