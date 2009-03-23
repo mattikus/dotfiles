@@ -13,6 +13,7 @@ hgext.convert=
 hgext.rebase=
 hgext.zeroconf=
 hgext.bookmarks=
+hgext.convert=
 
 [extdiff]
 cmd.opendiff = opendiff

@@ -49,6 +49,7 @@ export PYTHONSTARTUP="${HOME}/.pythonrc"
 export HISTCONTROL=ignoredups
 export DOTFILES="${HOME}/.dotfiles"
 #export CDPATH=".:~"
+export INPUTRC=~/.inputrc
 
 #Colorful prompt
 if [ "$PS1" ]; then
@@ -69,8 +70,6 @@ if [ "$PS1" ]; then
         #Local
         PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]\$ '
     fi
-
-    [ -d "$DOTFILES" ] && . $DOTFILES/j/j.sh
 fi
 
 #Optional stuffs
