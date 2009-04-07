@@ -38,7 +38,7 @@ for file in *; do
         (
         cd ~
         if [[ -d "$pathdir/$file" ]]; then
-            rm ~/."$file"
+            rm -f ~/."$file"
             ln -s -f -n "$pathdir/$file" ."$file"
         else
             ln -s -f "$pathdir/$file" ".$file"
