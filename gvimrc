@@ -1,13 +1,14 @@
 "Set font based on which gui we're running
 if has("gui_macvim")
-    set gfn=Terminus:h12
+    set gfn=Monaco:h12
+    set antialias
 else
     set gfn=Terminus\ 12
+    set noantialias
 endif
 set cul
 set nu
 set lines=56
-set noantialias
 set guioptions-=r
 set guioptions-=T
 set guioptions-=m
