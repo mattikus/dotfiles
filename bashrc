@@ -63,7 +63,7 @@ if [ "$PS1" ]; then
     esac
 
     #Check to see if im local or remote
-    if [[ -n $(ps -ef |grep "sshd: \(mkemp2\|matt\)") ]]; then
+    if [[ -n $(ps -ef |grep "sshd: \(mkemp\|mkemp2\|matt\)") ]]; then
         #Remote
         PS1='\[\033[01;35m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]\$ '
     else
