@@ -31,19 +31,17 @@ terms = [ 'xterm-color',
           'xterm-256color',
           'xterm',
           'rxvt',
+          'rxvt-color',
           'rxvt-unicode',
           'rxvt-256color',
           'vt100', ]
 
 if os.environ.get('TERM') in terms:
     sys.ps1 = Prompt('\001\033[0:1;32m\002h[\001\033[0:1;36m\002%d\001\033[0:1;32m\002] >>> \001\033[0m\002')
-else:
-    sys.ps1 = Prompt()
-
-if os.environ.get('TERM') in terms:
     sys.ps2 = '\001\033[0:1;36m\002........ \001\033[0m\002'
 else:
-	sys.ps2 = '........ '
+    sys.ps1 = Prompt()
+    sys.ps2 = '........ '
 
 # Get the see keyword for better viewing of modules and objects
 try:
@@ -52,4 +50,4 @@ except ImportError:
     pass
 
 # Cleanup
-del(terms)
+#del(terms)

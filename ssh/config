@@ -1,7 +1,4 @@
 ###Classes###
-host opsys
-hostname opsys00.cct.lsu.edu
-user opsys_40
 #############
 
 ###Linode VPS###
@@ -11,11 +8,18 @@ user matt
 forwardAgent yes
 port 64000
 ControlMaster auto
-################
+
+host proxy-vps
+hostname mattikus.com
+user matt
+port 64000
+DynamicForward 8080
 
 host lish
 hostname dallas56.linode.com
 user mattikus
+################
+
 
 ###Home Machine###
 host zaknafein
@@ -38,6 +42,11 @@ forwardAgent yes
 ControlMaster auto
 forwardAgent yes
 forwardX11trusted yes
+
+host proxy-wh
+user mkemp2
+hostname whitehorse.cct.lsu.edu
+DynamicForward 8080
 #################
 
 ###bitbucket###
@@ -47,7 +56,12 @@ compression yes
 ###############
 
 ###Catch all###
-host *
+host *cct*
 user mkemp2
 forwardAgent yes
 ###############
+
+##ANL##
+host *
+user mkemp
+######

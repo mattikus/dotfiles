@@ -51,6 +51,8 @@ if version > 700
   set ve=onemore 
   if &t_Co > 16
     set cul 
+  else
+    let g:CSApprox_loaded = 1
   endif
   "remap ctrl-space to omnicomplete
   inoremap <Nul> <C-x><C-o>
