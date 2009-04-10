@@ -62,6 +62,23 @@ forwardAgent yes
 ###############
 
 ##ANL##
+host mgt1.ether mgt1.alcf.anl.gov
+    LocalForward localhost:32074 sn1-mgmt.intrepid.alcf.anl.gov:32072
+    LocalForward localhost:32073 sn1-mgmt.surveyor.alcf.anl.gov:32072
+    LocalForward localhost:44343 mgt3-mgmt.ether.alcf.anl.gov:443
+    LocalForward localhost:5000  mgt3-mgmt.ether.alcf.anl.gov:5000
+    LocalForward localhost:2222  mgt3-mgmt.ether.alcf.anl.gov:22
+
+host mgt2.ether mgt2.ether.alcf.anl.gov
+    LocalForward localhost:32074 sn1-mgmt.intrepid.alcf.anl.gov:32072
+    LocalForward localhost:32073 sn1-mgmt.surveyor.alcf.anl.gov:32072
+    LocalForward localhost:44343 mgt3-mgmt.ether.alcf.anl.gov:443
+    LocalForward localhost:5000  mgt3-mgmt.ether.alcf.anl.gov:5000
+    LocalForward localhost:2222  mgt3-mgmt.ether.alcf.anl.gov:22
+
+host mgt3 mgt3.ether mgt3.ether.alcf.anl.gov
+    ProxyCommand ssh -A mgt2.ether netcat mgt3.ether %p
+
 host *
 user mkemp
 ######
