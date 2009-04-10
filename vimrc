@@ -23,6 +23,7 @@ set smarttab
 set smartindent 
 set autoindent 
 set ignorecase
+set smartcase
 set wrapscan
 syn on
 set nu
@@ -37,6 +38,8 @@ set shortmess=atI
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
+" No Help, please
+nmap <F1> <Esc>
 
 runtime macros/matchit.vim "Match more than just braces
 
