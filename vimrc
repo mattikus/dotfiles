@@ -41,6 +41,8 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " No Help, please
 nmap <F1> <Esc>
 
+map ]n :NERDTreeToggle<CR>
+
 runtime macros/matchit.vim "Match more than just braces
 
 set tags+=~/.vim/tags/python.ctags
@@ -76,7 +78,7 @@ if version > 700
   "set omnicomplete to be default for supertab
   let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
   
-  if $TERM != "linux"
+  if $TERM != "linux" && $TERM != "screen"
     " Stretches the term window by the width of the number column width
     let old_col=&co
     autocmd VimEnter * let &co = (&co + &nuw + 1)
