@@ -41,7 +41,8 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " No Help, please
 nmap <F1> <Esc>
 
-map ]n :NERDTreeToggle<CR>
+map <F6> :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen = 1
 
 runtime macros/matchit.vim "Match more than just braces
 
