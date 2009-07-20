@@ -1,0 +1,19 @@
+[github]
+user = mattikus
+token =
+
+[user]
+email = matt@mattikus.com
+name = Matt Kemp
+
+[color]
+ui = auto
+
+[alias]
+st = status
+ci = commit
+co = checkout
+nst = !PAGER=cat git diff --name-status
+
+[branch]
+autosetupmerge = always
