@@ -10,6 +10,6 @@
 	st = status
 	ci = commit
 	co = checkout
-    nst = !PAGER=cat git diff --name-status
+  nst = !PAGER=cat git diff --name-status
 [branch]
 	autosetupmerge = always
