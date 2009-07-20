@@ -1,8 +1,8 @@
 ZHOME="${HOME}/.zsh"
 source "${ZHOME}/environ_alias"
-source "${ZHOME}/functions"
 source "${ZHOME}/style"
-[[ -n "${HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc./local"
+source "${ZHOME}/functions"
+[[ -n "${HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc.local"
 
 autoload -Uz colors compinit promptinit zmv vcs_info url-quote-magic
 colors; compinit; promptinit;
