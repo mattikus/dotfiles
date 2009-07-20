@@ -17,3 +17,5 @@ nst = !PAGER=cat git diff --name-status
 
 [branch]
 autosetupmerge = always
+
+# vim:ft=gitconfig
