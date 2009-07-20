@@ -1,6 +1,6 @@
 "Set font based on which gui we're running
 if has("gui_macvim")
-    set gfn=Monaco:h12
+    set gfn=Panic\ Sans:h12
     set antialias
 else
     set gfn=Terminus\ 12
@@ -12,15 +12,12 @@ set lines=56
 set guioptions-=r
 set guioptions-=T
 set guioptions-=m
+set cmdheight=2
 
 " Stretches the term window by the width of the number column width
-let co=(&co + &nuw)
+let &co=(&co + &nuw)
 
-
-"let xterm16_colormap = 'allblue'
-"let xterm16_brightness = 'med'
-"colo xterm16 
-colo zenburn
+colo twilight
 
 "remap ctrl-space to omnicomplete
 inoremap <C-space> <C-x><C-o>

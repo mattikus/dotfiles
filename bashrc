@@ -1,3 +1,4 @@
+
 #Shell Options
 shopt -s cdspell
 shopt -s checkwinsize
@@ -22,20 +23,7 @@ function wj() {
   wget "$1" -O- | tar xjf - 
 }
 function confmake() {
-  ./configure "$@" && make
-}
-
-export TD="$HOME/tmp/$(date +'%m-%d-%Y')"
-function td(){
-    td=$TD
-    if [ ! -z "$1" ]; then
-        td="$HOME/tmp/$(date -d "$1 days" +'%m-%d-%Y')";
-    fi
-    if [ ! -d $td ]; then
-        mkdir -p $td
-        unlink $HOME/tmp/latest; ln -s $td $HOME/tmp/latest
-    fi
-    cd $td; unset td
+  ./configure "$@" && make -j3
 }
 
 #Shell Environment Variables
@@ -62,26 +50,56 @@ if [ "$PS1" ]; then
         ;;
     esac
 
+    D=$'\e[37;40m'
+    PINK=$'\e[35;40m'
+    GREEN=$'\e[32;40m'
+    ORANGE=$'\e[33;40m'
+
     #Check to see if im local or remote
     if [[ -n $(ps -ef |grep "sshd: \(mkemp\|mkemp2\|matt\)") ]]; then
         #Remote
-        PS1='\[\033[01;35m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]\$ '
+        #PS1='\[\033[01;35m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]\$ '
+        PS1='\n${PINK}\u ${D}at ${ORANGE}\h ${D}in ${PINK}\w ${PINK}$(vcprompt) ${D}\n$ '
     else
         #Local
-        PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]\$ '
+        #PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]\$ '
+        PS1='\n${PINK}\u ${D}at ${ORANGE}\h ${D}in ${GREEN}\w ${PINK}$(vcprompt) ${D}\n$ '
     fi
 fi
 
 #Optional stuffs
-[[ -f /etc/bash_completion ]] && . /etc/bash_completion
 [[ -f /usr/bin/keychain ]] && eval $(keychain --eval -q id_rsa)
 
 #Include local changes if available
 [[ -f $HOME/.bashrc.local ]] && . "$HOME/.bashrc.local"
 
 #New 4.0 options
-if [[ ${BASH_VERSION::3} == '4.0' ]]; then
+if [[ ${BASH_VERSION::1} == '4' ]]; then
     export PROMPT_DIRTRIM=2
     shopt -s dirspell
     shopt -s globstar
+    shopt -s checkjobs
 fi
+
+#====virtualenv Wrapper====
+#Set up virtualenvwraper
+export WORKON_HOME=$HOME/projects
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
+. $HOME/bin/virtualenvwrapper_bashrc
+
+_virtualenvs ()
+{
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+    COMPREPLY=( $(compgen -W "`ls $WORKON_HOME`" -- ${cur}) )
+}
+
+complete -o default -o nospace -F _virtualenvs workon
+complete -o default -o nospace -F _virtualenvs rmvirtualenv
+
+#====Clojure====
+export CLOJURE_EXT="$HOME/clojure"
+export CLOJURE_OPTS="-Xms32M -Xmx128M -server"
+
+#====J====
+export JPY="$HOME/bin/j.py"
+. $HOME/bin/j.sh

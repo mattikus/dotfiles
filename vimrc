@@ -16,9 +16,9 @@ set nohlsearch
 set incsearch 
 set foldmethod=indent
 set et
-set softtabstop=4
-set ts=4
-set sw=4
+set softtabstop=2
+set ts=2
+set sw=2
 set smarttab 
 set smartindent 
 set autoindent 
@@ -32,7 +32,11 @@ set title
 set wildmenu
 "set wildmode=list:longest
 set scrolloff=3
-set shortmess=atI
+set shortmess=atTIs
+set verbose=0
+set grepprg="ack"
+set grepformat=%f:%l:%m
+let mapleader=','
 
 "Don't leave .swp files littered about
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -41,12 +45,13 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " No Help, please
 nmap <F1> <Esc>
 
-map <F6> :NERDTreeToggle<CR>
+map <leader>d :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
+let NERDTreeIgnore=['\.pyc$', '\~$', '.svn', '.git', '.hg', 'CVSROOT']
 
 runtime macros/matchit.vim "Match more than just braces
 
-set tags+=~/.vim/tags/python.ctags
+"set tags+=~/.vim/tags/python.ctags
 "set tags+=~/.vim/tags/systags
 
 "stuff for vim 7
@@ -57,8 +62,6 @@ if version > 700
   set ve=onemore 
   if &t_Co > 16
     set cul 
-  else
-    let g:CSApprox_loaded = 1
   endif
   "remap ctrl-space to omnicomplete
   inoremap <Nul> <C-x><C-o>
@@ -79,7 +82,7 @@ if version > 700
   "set omnicomplete to be default for supertab
   let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
   
-  if $TERM != "linux" && $TERM != "screen"
+  if $TERM != "linux" && $TERM != "screen" && ! has('gui_running')
     " Stretches the term window by the width of the number column width
     let old_col=&co
     autocmd VimEnter * let &co = (&co + &nuw + 1)
@@ -91,9 +94,30 @@ endif
 setlocal indentkeys=!^F,o,O,<:>,0),0],0},=elif,=except,0#
 set nofoldenable
 
-
 if &t_Co > 16
   colorscheme zenburn
 else
   colorscheme desert
 endif
+
+" ======================
+" Clojure Stuffs
+" ======================
+let clj_highlight_builtins = 1
+let clj_highlight_contrib = 1
+let clj_paren_rainbow = 1
+let clj_want_gorilla = 1
+let vimclojure#NailgunClient = "/Users/mkemp/bin/ng"
+" ======================
+
+" ======================
+" FuzzyFinder Stuffs
+" ======================
+"let g:FuzzyFinderOptions.Base.ignore_case = 1
+let g:fuzzy_ignore='*.pyc, *.tmp'
+let g:fuzzy_ceiling=20000
+let g:fuzzy_matching_limit=100
+let g:fuzzy_path_display='abbr'
+nnoremap <silent> <leader>t :FuzzyFinderTextMate<CR>
+nnoremap <silent> <leader>o  :FuzzyFinderTextMateRefreshFiles<CR>
+" ======================

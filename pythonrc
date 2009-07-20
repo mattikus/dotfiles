@@ -50,4 +50,4 @@ except ImportError:
     pass
 
 # Cleanup
-#del(terms)
+del(terms)
