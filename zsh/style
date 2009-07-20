@@ -15,7 +15,6 @@ zstyle ':completion:*:manuals.(^1*)' insert-sections true
 zstyle ':completion:*' menu select
 zstyle ':completion:*' verbose yes
 
-
 # tab completion for PID :D
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*' force-list always
@@ -24,7 +23,7 @@ zstyle ':completion:*:kill:*' force-list always
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
 #set up vcs_info
-local FMT_BRANCH="%{$fg[magenta]%}[%{$fg[green]%}%s:%b%u%c%{$fg[magenta]%}]" # e.g. master¹²
+local FMT_BRANCH="%{$fg[magenta]%}[%{$fg[green]%}%s:%b%u%c%{$fg[magenta]%}]%{$reset_color%}" # e.g. master¹²
 local FMT_ACTION="(%{$fg[cyan]%}%a%{$reset_color%})"   # e.g. (rebase-i)
 local FMT_PATH="%R%{$fg[yellow]%}/%S"              # e.g. ~/repo/subdir
 zstyle ':vcs_info:*' enable git svn hg bzr
@@ -35,4 +34,4 @@ zstyle ':vcs_info:*:prompt:*' actionformats "${FMT_BRANCH}${FMT_ACTION}"
 zstyle ':vcs_info:*:prompt:*' formats       "${FMT_BRANCH}"
 zstyle ':vcs_info:*:prompt:*' nvcsformats   "" ""
 
-# vim:ft=zsh
+# vim: ft=zsh

@@ -1,12 +1,12 @@
+autoload -Uz colors compinit promptinit zmv vcs_info url-quote-magic
+colors; compinit; promptinit;
+zle -N self-insert url-quote-magic
+
 ZHOME="${HOME}/.zsh"
 source "${ZHOME}/environ_alias"
 source "${ZHOME}/style"
 source "${ZHOME}/functions"
 [[ -n "${HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc.local"
-
-autoload -Uz colors compinit promptinit zmv vcs_info url-quote-magic
-colors; compinit; promptinit;
-zle -N self-insert url-quote-magic
 
 # Set options
 setopt appendhistory 
