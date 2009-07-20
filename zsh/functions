@@ -1,10 +1,11 @@
 # Functions
 
 function ztmpl() {
-  if [[ $1.tmpl -nt $1 || (! -f $1 && -f $1.tmpl) ]] ; then
+  # $1 = template; $2 = output file
+  if [[ $1 -nt $2 || (! -f $2 && -f $1) ]]; then
     # echo "Using $1.tmpl as the template to make $1..."
-    local foo="$(print -bP "$(cat $1.tmpl)")"
-    echo ${(e)foo} > $1
+    local foo="$(print -bP "$(cat $1)")"
+    echo ${(e)foo} > $2
   fi
 }
 
