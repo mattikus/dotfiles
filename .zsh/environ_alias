@@ -1,0 +1,27 @@
+#Shell Environment Variables
+export PATH="${HOME}/bin:${HOME}/.local/bin:/opt/local/bin:/usr/local/bin:/usr/local/sbin:/usr/games:${PATH}:/usr/sbin:/sbin"
+export EDITOR="vim"
+export VISUAL="vim"
+eval $(dircolors -b) # export LS_COLORS
+export LC_ALL="$LANG"
+export PYTHONSTARTUP="${HOME}/.pythonrc"
+[[ -d /usr/share/doc/python ]] && export PYTHONDOCS="/opt/local/share/doc/python:$PYTHONDOCS"
+export DOTFILES="${HOME}/.dotfiles"
+export INPUTRC=~/.inputrc
+export HISTFILE=~/.zsh_history
+export HISTSIZE=30000
+export SAVEHIST=30000
+
+#Set up virtualenvwraper
+export WORKON_HOME=$HOME/projects
+source "${HOME}"/bin/virtualenvwrapper_bashrc
+
+#Aliases
+alias ls='ls -h --color=auto'
+alias ll='ls -l'
+alias lh='ls -lt $@ | head -10'
+alias grep='grep --color'
+alias quickweb='python -m SimpleHTTPServer'
+alias cal='cal | sed "s/.*/ & /;s/ \($(date +%e)\) / $(echo -e "\033[01;31m")\1$(echo -e "\033[00m") /"'
+
+# vim:ft=zsh

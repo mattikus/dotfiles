@@ -1,0 +1,25 @@
+[github]
+  user = mattikus
+  token = $(< ${HOME}/.github-token)
+
+[user]
+  email = matt@mattikus.com
+  name = Matt Kemp
+
+[color]
+  ui = auto
+
+[alias]
+  st = status
+  ci = commit
+  co = checkout
+  nst = !PAGER=cat git diff --name-status
+  graph = log --oneline --graph
+
+[branch]
+  autosetupmerge = always
+
+[help]
+  autocorrect = 1
+
+# vim:ft=gitconfig
