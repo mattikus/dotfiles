@@ -3,7 +3,7 @@
 # Completion styles
 # allow approximate
 zmodload zsh/complist
-zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*' completer _list _complete _match _approximate 
 zstyle ':completion:*:match:*' original only
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX + $#SUFFIX) / 3 )) )'
 zstyle ':completion:*:descriptions' format "- %d -"
@@ -14,6 +14,10 @@ zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:manuals.(^1*)' insert-sections true
 zstyle ':completion:*' menu select
 zstyle ':completion:*' verbose yes
+zstyle ':completion:*' accept-exact yes
+zstyle ':completion:*' expand yes
+zstyle ':completion:*' use-cacheyes
+zstyle ':completion:*' use-perl yes
 
 # tab completion for PID :D
 zstyle ':completion:*:*:kill:*' menu yes select
