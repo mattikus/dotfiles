@@ -1,5 +1,12 @@
 #!/usr/bin/env python
+try:
+  import builtins
+  builtins_ = builtins
+except ImportError:
+  import __builtin__
+  builtins_ = __builtin__
 import sys, os, string, time
+from pprint import pprint
 
 ################ Interactive Prompt and Debugging ################
 
@@ -48,6 +55,12 @@ try:
     from see import see
 except ImportError:
     pass
+
+def displayhook(value):
+    if value is not None:
+        builtins_._ = value
+        pprint(value)
+sys.displayhook = displayhook
 
 # Cleanup
 del(terms)

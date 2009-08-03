@@ -1,62 +1,55 @@
-"set nocompatible 
-
-filetype on 
-filetype plugin on
-filetype indent on
-
 set background=dark 
 set ruler 
 set mouse=a 
-set report=0 
 set showmatch
-set bs=indent,eol,start
+set backspace=indent,eol,start
 set nowrap 
-set t_md= 
+set t_md="" "turn of bold chars in terminal
 set nohlsearch 
 set incsearch 
-set foldmethod=indent
-set et
 set softtabstop=2
-set ts=2
-set sw=2
+set tabstop=2
+set shiftwidth=2
+set expandtab
 set smarttab 
-set smartindent 
 set autoindent 
+set smartindent 
 set ignorecase
 set smartcase
 set wrapscan
-syn on
-set nu
-set cpo+=|
+set number
 set title
 set wildmenu
-"set wildmode=list:longest
+set wildmode=list:longest
 set scrolloff=3
 set shortmess=atTIs
 set verbose=0
-set grepprg="ack"
-set grepformat=%f:%l:%m
+
+"set leaders
 let mapleader=','
+let maplocalleader=';'
+
+"set xml.vim settings
+let xml_use_xhtml=1
 
 "Don't leave .swp files littered about
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupdir=~/tmp,/var/tmp,/tmp
+set directory=~/tmp,/var/tmp,/tmp
 
 " No Help, please
 nmap <F1> <Esc>
 
+" NERDTree Options
 map <leader>d :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
 let NERDTreeIgnore=['\.pyc$', '\~$', '.svn', '.git', '.hg', 'CVSROOT']
 
-runtime macros/matchit.vim "Match more than just braces
-
-"set tags+=~/.vim/tags/python.ctags
-"set tags+=~/.vim/tags/systags
+"Match more than just braces
+runtime macros/matchit.vim
 
 "stuff for vim 7
 if version > 700
-  set autochdir
+  "set autochdir
   set completeopt=menuone,longest,preview
   set nuw=3
   set ve=onemore 
@@ -121,3 +114,8 @@ let g:fuzzy_path_display='abbr'
 nnoremap <silent> <leader>t :FuzzyFinderTextMate<CR>
 nnoremap <silent> <leader>o  :FuzzyFinderTextMateRefreshFiles<CR>
 " ======================
+
+"turn on filetype matching
+filetype plugin indent on
+"pretty colors
+syntax enable
