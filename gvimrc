@@ -1,6 +1,6 @@
 "Set font based on which gui we're running
 if has("gui_macvim")
-    set gfn=Panic\ Sans:h12
+    set gfn=Inconsolata:h14
     set antialias
 else
     set gfn=Terminus\ 12

@@ -1,7 +1,11 @@
 #!/bin/bash
-cd ~/.tintin
+
+PATH=/opt/arch/bin:$PATH
+TT=$(which tt++)
+
+cd $HOME/.tintin
 if [[ -n $1 ]];then
-    ~/bin/tt++ $1.tin
+    $TT $1.tin
 else
-    ~/bin/tt++ startup.tin
+    $TT startup.tin
 fi
