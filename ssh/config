@@ -94,12 +94,14 @@ host mgt3 mgt3.ether mgt3.ether.alcf.anl.gov
 host namby
     hostname namby.mcs.anl.gov
     forwardagent yes
+    LocalForward localhost:2222 status.alcf.anl.gov:22
+    LocalForward localhost:5050 status.alcf.anl.gov:5050
     controlmaster auto
 
 host pamby
     hostname pamby.mcs.anl.gov
     forwardagent yes
-    LocalForward localhost:2002 status.alcf.anl.gov:22
+    LocalForward localhost:2222 status.alcf.anl.gov:22
     LocalForward localhost:5050 status.alcf.anl.gov:5050
     controlmaster auto
 
