@@ -6,7 +6,7 @@ ZHOME="${HOME}/.zsh"
 source "${ZHOME}/environ_alias"
 source "${ZHOME}/style"
 source "${ZHOME}/functions"
-[[ -n "${HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc.local"
+[[ -f "${HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc.local"
 
 # Set options
 setopt appendhistory 
@@ -19,7 +19,7 @@ setopt vi
 unsetopt beep
 
 # Create my git configuration unless it's already up-to-date.
-ztmpl $DOTFILES/gitconfig.tmpl $HOME/.gitconfig
+[[ -f $HOME/.gitconfig ]] && ztmpl $DOTFILES/gitconfig.tmpl $HOME/.gitconfig
 
 # Create my prompt
 setprompt
