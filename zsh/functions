@@ -29,6 +29,10 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
+if [[ $ZSH_VERSION[-3,-1] < 4.9 ]]; then
+  vcsinfo() {}
+fi
+
 # Executed before each prompt
 function precmd {
   vcs_info 'prompt'
@@ -37,13 +41,6 @@ function precmd {
 function setprompt () {
   # Need this, so the prompt will work
   setopt prompt_subst
-
-  # let's load colors into our environment, then set them
-  autoload colors
-
-  if [[ "$terminfo[colors]" -gt 8 ]]; then
-      colors
-  fi
 
   # Finally, let's set the prompt
   PROMPT='%{$fg[magenta]%}%n %{$fg[white]%}at %{$fg[yellow]%}%m %{$fg[white]%}in %{$fg[green]%}%~ \
