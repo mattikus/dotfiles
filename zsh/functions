@@ -2,19 +2,31 @@
 
 function ztmpl() {
   # $1 = template; $2 = output file
-  if [[ -f $1 && ($1 -nt $2 || (! -f $2 && -f $1)) ]]; then
-    # echo "Using $1.tmpl as the template to make $1..."
+  if [[ ! -f $1 ]]; then
+    true
+  elif [[ $1 -nt $2 || (! -f $2 && -f $1) ]]; then
+    echo "Using $1 as the template to make $2..."
     local foo="$(print -bP "$(cat $1)")"
     echo ${(e)foo} > $2
   fi
 }
 
 function wz() { 
-  wget "$1" -O- | tar xzf - 
+  if [[ -f $(which wget) ]]; then
+    wget "$1" -O- | tar xzf -
+  elif [[ -f $(which curl) ]]; then
+    curl "$1" | tar xzf -
+  fi
 }
+
 function wj() { 
-  wget "$1" -O- | tar xjf - 
+  if [[ -f $(which wget) ]]; then
+    wget "$1" -O- | tar xjf -
+  elif [[ -f $(which curl) ]]; then
+    curl "$1" | tar xjf -
+  fi
 }
+
 function confmake() {
   ./configure "$@" && make -j3
 }
