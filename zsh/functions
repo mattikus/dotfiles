@@ -2,7 +2,7 @@
 
 function ztmpl() {
   # $1 = template; $2 = output file
-  if [[ $1 -nt $2 || (! -f $2 && -f $1) ]]; then
+  if [[ -f $1 && ($1 -nt $2 || (! -f $2 && -f $1)) ]]; then
     # echo "Using $1.tmpl as the template to make $1..."
     local foo="$(print -bP "$(cat $1)")"
     echo ${(e)foo} > $2
@@ -30,7 +30,7 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 if [[ ${ZSH_VERSION[-3,-1]} < 4.9 ]]; then
-  vcs_info() {}
+  function vcs_info() {}
 fi
 
 # Executed before each prompt

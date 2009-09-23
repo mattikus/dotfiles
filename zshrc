@@ -19,7 +19,7 @@ setopt vi
 unsetopt beep
 
 # Create my git configuration unless it's already up-to-date.
-[[ -f $HOME/.github-token ]] && ztmpl $DOTFILES/gitconfig.tmpl $HOME/.gitconfig
+ztmpl $DOTFILES/gitconfig.tmpl $HOME/.gitconfig
 
 # Create my prompt
 setprompt
