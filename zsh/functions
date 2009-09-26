@@ -46,6 +46,20 @@ fi
 # Executed before each prompt
 function precmd {
   vcs_info 'prompt'
+  case $TERM in
+    xterm*|*rxvt*|gnome*)
+      print -Pn "\e]0;%1~\a"
+      ;;
+  esac
+}
+
+# Executed before each command
+function preexec () {
+  case $TERM in
+    xterm*|*rxvt*|gnome*)
+      print -n "\e]0;$1\a"
+      ;;
+  esac
 }
 
 function setprompt () {
