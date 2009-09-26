@@ -48,7 +48,7 @@ function precmd {
   vcs_info 'prompt'
   case $TERM in
     xterm*|*rxvt*|gnome*)
-      print -Pn "\e]0;%1~\a"
+      print -Pn "\e]0;%n@%m: %~\a"
       ;;
   esac
 }

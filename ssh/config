@@ -21,17 +21,12 @@ user mattikus
 ################
 
 
-###Home Machine###
-host zaknafein
-hostname zaknafein.local
-hostname zaknafein
+###Home Machines###
+host *.local
 user matt
-port 64000
-
-host home
-hostname snippy.ath.cx
-user matt
-port 64000
+forwardAgent yes
+forwardX11trusted yes
+ControlMaster auto
 ##################
 
 ###Workstation###
