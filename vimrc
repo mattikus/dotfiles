@@ -77,8 +77,8 @@ if version > 700
   
   if $TERM != "linux" && $TERM != "screen" && ! has('gui_running')
     " Stretches the term window by the width of the number column width
-    autocmd VimEnter * let &co+=(&nuw + 1)
-    autocmd VimLeave * let &co-=(&nuw + 1)
+    "autocmd VimEnter * let &co+=(&nuw + 1)
+    "autocmd VimLeave * let &co-=(&nuw + 1)
   endif 
 endif
 

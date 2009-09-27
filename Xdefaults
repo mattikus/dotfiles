@@ -11,15 +11,17 @@ URxvt.cursorColor2:     cyan
 URxvt.cursorBlink:      false
 URxvt.cursorUnderline:  true
 URxvt.underlineColor:   #dcdccc
-URxvt.font:             -*-terminus-*-*-*-*-12-120-72-*-*-60-iso8859-1
-URxvt.boldFont:         -*-terminus-*-*-*-*-12-120-72-*-*-60-iso8859-1
-URxvt.italicFont:       -*-terminus-*-*-*-*-12-120-72-*-*-60-iso8859-1
+
+URxvt.font:             xft:Terminus:pixelsize=12
+!URxvt.font:             -*-terminus-*-*-*-*-12-120-72-*-*-60-iso8859-1
+!URxvt.boldFont:         -*-terminus-*-*-*-*-12-120-72-*-*-60-iso8859-1
+!URxvt.italicFont:       -*-terminus-*-*-*-*-12-120-72-*-*-60-iso8859-1
 URxvt.scrollBar:        False
 URxvt.internalBorder:   0
 URxvt.externalBorder:   0
 URxvt.saveLines:        5000
 URxvt.urgentOnBell:     True
-URxvt.geometry:         80x32
+URxvt.geometry:         80x24
 XTerm*faceName:         Terminus
 XTerm*faceSize:         8
 XTerm*scrollBar:        False
@@ -27,7 +29,7 @@ XTerm*internalBorder:   0
 XTerm*externalBorder:   0
 XTerm*saveLines:        5000
 XTerm*urgentOnBell:     True
-XTerm*geometry:         80x32
+XTerm*geometry:         80x24
 XTerm*utf8:             2
 XTerm*termName:         xterm-256color
 XTerm*dynamicColors:    true
