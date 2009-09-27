@@ -1,4 +1,8 @@
 ###Classes###
+host csc
+hostname classes.csc.lsu.edu
+user cs410319
+ControlMaster auto
 #############
 
 ###Linode VPS###
