@@ -49,12 +49,19 @@ hostname whitehorse.cct.lsu.edu
 DynamicForward 8080
 #################
 
+
 ###bitbucket###
 host bb
 hostname bitbucket.org
 compression yes
 ###############
 
+###Spider###
+host spider
+hostname spider00.loni.org
+user mkemp2
+forwardagent yes
+############
 ###Catch all###
 host *cct*
 user mkemp2

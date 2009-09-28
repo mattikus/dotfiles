@@ -83,7 +83,7 @@ fi
 
 #====virtualenv Wrapper====
 #Set up virtualenvwraper
-export WORKON_HOME=$HOME/projects
+export WORKON_HOME=$HOME/.virtualenvs
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 . $HOME/bin/virtualenvwrapper_bashrc
 
@@ -102,4 +102,4 @@ export CLOJURE_OPTS="-Xms32M -Xmx128M -server"
 
 #====J====
 export JPY="$HOME/bin/j.py"
-. $HOME/bin/j.sh
+[[ -f $HOME/bin/j.sh ]] && . $HOME/bin/j.sh
