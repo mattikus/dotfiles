@@ -6,7 +6,7 @@ ZHOME="${HOME}/.zsh"
 source "${ZHOME}/environ_alias"
 source "${ZHOME}/style"
 source "${ZHOME}/functions"
-[[ -n "${HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc.local"
+[[ -f "${HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc.local"
 
 # Set options
 setopt appendhistory 

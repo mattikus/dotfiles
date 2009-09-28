@@ -1,4 +1,8 @@
 ###Classes###
+host csc
+hostname classes.csc.lsu.edu
+user cs410319
+ControlMaster auto
 #############
 
 ###Linode VPS###
@@ -21,32 +25,33 @@ user mattikus
 ################
 
 
-###Home Machine###
-host zaknafein
-hostname zaknafein.local
-hostname zaknafein
+###Home Machines###
+host *.local
 user matt
-port 64000
-
-host home
-hostname snippy.ath.cx
-user matt
-port 64000
+forwardAgent yes
+forwardX11trusted yes
+ControlMaster auto
 ##################
 
 ###Workstation###
 host wh
-user mkemp2
 hostname whitehorse.cct.lsu.edu
+user mkemp2
 forwardAgent yes
 ControlMaster auto
-forwardAgent yes
 forwardX11trusted yes
 
 host proxy-wh
-user mkemp2
 hostname whitehorse.cct.lsu.edu
+user mkemp2
 DynamicForward 8080
+
+host ws
+hostname gamedell02.cct.lsu.edu
+user mkemp2
+forwardAgent yes
+ControlMaster auto
+forwardX11trusted yes
 #################
 
 
@@ -101,12 +106,14 @@ host mgt3 mgt3.ether mgt3.ether.alcf.anl.gov
 host namby
     hostname namby.mcs.anl.gov
     forwardagent yes
+    LocalForward localhost:2222 status.alcf.anl.gov:22
+    LocalForward localhost:5050 status.alcf.anl.gov:5050
     controlmaster auto
 
 host pamby
     hostname pamby.mcs.anl.gov
     forwardagent yes
-    LocalForward localhost:2002 status.alcf.anl.gov:22
+    LocalForward localhost:2222 status.alcf.anl.gov:22
     LocalForward localhost:5050 status.alcf.anl.gov:5050
     controlmaster auto
 

@@ -1,7 +1,10 @@
 #!/bin/bash
 
-PATH=/opt/arch/bin:$PATH
 TT=$(which tt++)
+if [[ ! -f $TT ]]; then
+  echo 'tt++ not installed.'
+  exit 1
+fi
 
 cd $HOME/.tintin
 if [[ -n $1 ]];then
