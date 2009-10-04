@@ -24,6 +24,7 @@ set wildmode=list:longest
 set scrolloff=3
 set shortmess=atTIs
 set verbose=0
+set textwidth=79
 
 "set leaders
 let mapleader=','
