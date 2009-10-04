@@ -119,6 +119,7 @@ nnoremap <silent> <leader>o  :FuzzyFinderTextMateRefreshFiles<CR>
 filetype plugin indent on
 "pretty colors
 syntax enable
+
 "highlight characters past col 80
-hi OverLength cterm=reverse
-match OverLength "\%81v.*"
+"hi OverLength cterm=reverse
+"match OverLength "\%81v.*"

@@ -1,42 +1,41 @@
-Xft*dpi: 96
-Xft*antialias: 1
-Xft*hinting: 1
-Xft*hintstyle: full
-Xft*rgba: rgb
+!! xft stuff, should be taken care of in .fonts.config
+!Xft.dpi: 96
+!Xft.antialias: true
+!Xft.hinting: true
+!Xft.hintstyle: hintsfull
+!Xft.rgba: none
+!Xft.lcdfilter: lcddefault
 
-!URxvt*background:       #202020
-!URxvt*foreground:       #d0d0d0
-URxvt.cursorColor:      #dcdccc
-URxvt.cursorColor2:     cyan
-URxvt.cursorBlink:      false
-URxvt.cursorUnderline:  true
-URxvt.underlineColor:   #dcdccc
-URxvt.font:             -*-terminus-*-*-*-*-12-120-72-*-*-60-iso8859-1
-URxvt.boldFont:         -*-terminus-*-*-*-*-12-120-72-*-*-60-iso8859-1
-URxvt.italicFont:       -*-terminus-*-*-*-*-12-120-72-*-*-60-iso8859-1
-URxvt.scrollBar:        False
-URxvt.internalBorder:   0
-URxvt.externalBorder:   0
-URxvt.saveLines:        5000
-URxvt.urgentOnBell:     True
-URxvt.geometry:         80x32
-XTerm*faceName:         Terminus
+!! Fonts
+
+!! rxvt-unicode
+URxvt*cursorColor:      #dcdccc
+URxvt*cursorColor2:     cyan
+URxvt*cursorBlink:      false
+URxvt*cursorUnderline:  true
+URxvt*underlineColor:   #dcdccc
+URxvt*font:             xft:inconsolata:bold:pixelsize=12
+URxvt*scrollBar:        False
+URxvt*internalBorder:   0
+URxvt*externalBorder:   0
+URxvt*saveLines:        5000
+URxvt*urgentOnBell:     True
+
+!! xterm
+XTerm*faceName:         xft:inconsolata:bold:pixelsize=12
 XTerm*faceSize:         8
 XTerm*scrollBar:        False
 XTerm*internalBorder:   0
 XTerm*externalBorder:   0
 XTerm*saveLines:        5000
 XTerm*urgentOnBell:     True
-XTerm*geometry:         80x32
 XTerm*utf8:             2
 XTerm*termName:         xterm-256color
 XTerm*dynamicColors:    true
 XTerm*scrollTtyKeypress:true
 XTerm*scrollTtyOutput:  false
 
-irc.geometry:           89x61
-
-
+!! Colors
 *foreground:     #dcdccc
 *background:     #2f2f2f
 !black
