@@ -6,7 +6,6 @@
 !Xft.rgba: none
 !Xft.lcdfilter: lcddefault
 
-!! Fonts
 
 !! rxvt-unicode
 URxvt*cursorColor:      #dcdccc

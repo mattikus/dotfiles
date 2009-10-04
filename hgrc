@@ -15,11 +15,6 @@ hgext.zeroconf=
 hgext.bookmarks=
 hgext.convert=
 
-#hg-git
-hgext.hg-git=~/tmp/hg-git
-#hg-prompt
-hgext.prompt=~/src/hg-prompt/prompt.py
-
 [extdiff]
 cmd.opendiff = opendiff
 
