@@ -33,7 +33,7 @@ function confmake() {
 # zle-keymap-select is executed every time KEYMAP changes.
 # From http://zshwiki.org/home/examples/zlewidgets
 function zle-line-init zle-keymap-select {
-    VIMODE="${${KEYMAP/vicmd/[c]}/(main|viins)/[i]}"
+    VIMODE="${${KEYMAP/vicmd/c}/(main|viins)/i}"
     zle reset-prompt
 }
 zle -N zle-line-init
@@ -68,10 +68,9 @@ function setprompt () {
   setopt prompt_subst
 
   # Finally, let's set the prompt
-  PROMPT='%{$fg[magenta]%}%n %{$fg[white]%}at %{$fg[yellow]%}%m %{$fg[white]%}in %{$fg[green]%}%~ \
-
-%{$fg[white]%}%%%{$reset_color%} '
-  RPROMPT='${vcs_info_msg_0_}%{$fg[cyan]%}${VIMODE}%{$reset_color%}'
+  PROMPT='┌─[%{$fg[magenta]%}%m%{${reset_color}%}][%{$fg[green]%}%~%{${reset_color}%}]
+└─> '
+  RPROMPT='${vcs_info_msg_0_}%{$fg[magenta]%}[%{$fg[yellow]%}${VIMODE}%{$fg[magenta]%}]%{$reset_color%}'
 }
 
 
