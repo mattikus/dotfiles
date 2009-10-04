@@ -1,5 +1,9 @@
 # Functions
 
+# Auto-rehashing.  Try command completion, if fails, rehash
+function compctl_rehash { rehash; reply=() }
+compctl -C -c + -K compctl_rehash + -c
+
 function ztmpl() {
   # $1 = template; $2 = output file
   if [[ $1 -nt $2 || (! -f $2 && -f $1) ]]; then
