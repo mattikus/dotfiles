@@ -35,18 +35,25 @@ ControlMaster auto
 
 ###Workstation###
 host wh
-user mkemp2
 hostname whitehorse.cct.lsu.edu
+user mkemp2
 forwardAgent yes
 ControlMaster auto
-forwardAgent yes
 forwardX11trusted yes
 
 host proxy-wh
-user mkemp2
 hostname whitehorse.cct.lsu.edu
+user mkemp2
 DynamicForward 8080
+
+host ws
+hostname gamedell02.cct.lsu.edu
+user mkemp2
+forwardAgent yes
+ControlMaster auto
+forwardX11trusted yes
 #################
+
 
 ###bitbucket###
 host bb
@@ -54,6 +61,12 @@ hostname bitbucket.org
 compression yes
 ###############
 
+###Spider###
+host spider
+hostname spider00.loni.org
+user mkemp2
+forwardagent yes
+############
 ###Catch all###
 host *cct*
 user mkemp2
@@ -105,7 +118,7 @@ host pamby
     controlmaster auto
 
 host status
-    ProxyCommand ssh -A namby netcat status.alcf.anl.gov %p
+    ProxyCommand ssh -A pamby netcat status.alcf.anl.gov %p
 
 host *
 user mkemp

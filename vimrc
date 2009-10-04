@@ -24,6 +24,7 @@ set wildmode=list:longest
 set scrolloff=3
 set shortmess=atTIs
 set verbose=0
+set textwidth=79
 
 "set leaders
 let mapleader=','
@@ -74,12 +75,6 @@ if version > 700
 
   "set omnicomplete to be default for supertab
   let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-  
-  if $TERM != "linux" && $TERM != "screen" && ! has('gui_running')
-    " Stretches the term window by the width of the number column width
-    "autocmd VimEnter * let &co+=(&nuw + 1)
-    "autocmd VimLeave * let &co-=(&nuw + 1)
-  endif 
 endif
 
 

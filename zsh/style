@@ -30,7 +30,7 @@ zstyle ':completion:*:kill:*' force-list always
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
 #set up vcs_info
-local FMT_BRANCH="%{$fg[magenta]%}[%{$fg[green]%}%s:%b%{$fg[magenta]%}]%{$reset_color%}" # e.g. master¹²
+local FMT_BRANCH="%{$fg[magenta]%}[%{$fg[green]%}%s:%b%u%c%{$fg[magenta]%}]%{$reset_color%}" # e.g. master¹²
 local FMT_ACTION="(%{$fg[cyan]%}%a%{$reset_color%})"   # e.g. (rebase-i)
 local FMT_PATH="%R%{$fg[yellow]%}/%S"              # e.g. ~/repo/subdir
 zstyle ':vcs_info:*' enable git svn hg bzr
