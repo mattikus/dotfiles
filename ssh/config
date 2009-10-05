@@ -123,7 +123,7 @@ host pamby
     controlmaster auto
 
 host status
-    ProxyCommand ssh -A namby netcat status.alcf.anl.gov %p
+    ProxyCommand ssh -A pamby netcat status.alcf.anl.gov %p
 
 host *
 user mkemp

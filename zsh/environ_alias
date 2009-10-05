@@ -1,11 +1,10 @@
 #Shell Environment Variables
 export PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/games:${PATH}:/usr/sbin:/sbin"
 export EDITOR="vim"
-export VISUAL="vim"
+export VISUAL="vim -f"
 [[ -f $(which dircolors) ]] && eval $(dircolors -b) # export LS_COLORS
 export LC_ALL="$LANG"
 export PYTHONSTARTUP="${HOME}/.pythonrc"
-[[ -d /usr/share/doc/python ]] && export PYTHONDOCS="/opt/local/share/doc/python:$PYTHONDOCS"
 export DOTFILES="${HOME}/.dotfiles"
 export INPUTRC=~/.inputrc
 export HISTFILE=~/.zsh_history
@@ -14,14 +13,24 @@ export SAVEHIST=30000
 
 #Set up virtualenvwraper
 export WORKON_HOME=$HOME/.virtualenvs
+[[ -d $WORKON_HOME ]] || mkdir -p $WORKON_HOME
 source "${HOME}"/bin/virtualenvwrapper_bashrc
 
 #Aliases
-alias ls='ls -h'
+case "$(uname)" in
+  'Darwin')
+    alias ls='ls -GFh'
+    ;;
+  'Linux')
+    alias ls='ls --color=always -Fh'
+    ;;
+esac
 alias ll='ls -l'
 alias lh='ls -lt $@ | head -10'
 alias grep='grep --color'
 alias quickweb='python -m SimpleHTTPServer'
 alias cal='cal | sed "s/.*/ & /;s/ \($(date +%e)\) / $(echo -e "\033[01;31m")\1$(echo -e "\033[00m") /"'
+
+export LS_COLORS='no=00:fi=00:di=01;33:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jpg=01;35:*.png=01;35:*.gif=01;35:*.bmp=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.png=01;35:*.mpg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:';
 
 # vim:ft=zsh
