@@ -31,6 +31,14 @@ user matt
 forwardAgent yes
 forwardX11trusted yes
 ControlMaster auto
+port 64000
+
+host home
+hostname sevinn.ath.cx
+user matt
+forwardAgent yes
+controlMaster auto
+port 64000
 ##################
 
 ###Workstation###
