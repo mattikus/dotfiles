@@ -1,11 +1,16 @@
+# Set my autoload path so i can have the latest greatest even on older zsh
+[[ $fpath = *${HOME}* ]] || fpath=("${HOME}/.zsh/functions" $fpath)
+
+# Load up functions for use in my configs
 autoload -Uz colors compinit promptinit zmv vcs_info url-quote-magic
 colors; compinit; promptinit;
 zle -N self-insert url-quote-magic
 
+# Source my configs
 ZHOME="${HOME}/.zsh"
 source "${ZHOME}/environ_alias"
 source "${ZHOME}/style"
-source "${ZHOME}/functions"
+source "${ZHOME}/personal_functions"
 [[ -f "${HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc.local"
 
 # Set options

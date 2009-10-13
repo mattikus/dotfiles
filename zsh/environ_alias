@@ -10,6 +10,8 @@ export INPUTRC=~/.inputrc
 export HISTFILE=~/.zsh_history
 export HISTSIZE=30000
 export SAVEHIST=30000
+export HIST_IGNORE_DUPS=true
+export HIST_FIND_NO_DUPS=true
 
 #Set up virtualenvwraper
 export WORKON_HOME=$HOME/.virtualenvs
