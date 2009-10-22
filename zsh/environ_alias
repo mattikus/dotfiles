@@ -26,6 +26,9 @@ case "$(uname)" in
   'Linux')
     alias ls='ls --color=always -Fh'
     ;;
+  'NetBSD')
+    [[ -n $(which colorls) ]] && alias ls='colorls -GFh'
+    ;;
 esac
 alias ll='ls -l'
 alias lh='ls -lt $@ | head -10'

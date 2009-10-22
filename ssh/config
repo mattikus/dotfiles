@@ -24,6 +24,15 @@ hostname dallas56.linode.com
 user mattikus
 ################
 
+###prgmr vps###
+host vconfig
+hostname robe.prgmr.com
+user mattikus
+
+host nvps
+hostname mattikus.xen.prgmr.com
+user matt
+###############
 
 ###Home Machines###
 host *.local
