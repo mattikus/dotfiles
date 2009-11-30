@@ -5,7 +5,7 @@ user cs410319
 ControlMaster auto
 #############
 
-###Linode VPS###
+###prgmr VPS###
 host vps
 hostname mattikus.com
 user matt
@@ -19,20 +19,10 @@ user matt
 port 64000
 DynamicForward 8080
 
-host lish
-hostname dallas56.linode.com
-user mattikus
-################
-
-###prgmr vps###
 host vconfig
 hostname robe.prgmr.com
 user mattikus
-
-host nvps
-hostname mattikus.xen.prgmr.com
-user matt
-###############
+################
 
 ###Home Machines###
 host *.local
@@ -96,6 +86,12 @@ forwardAgent yes
 ###############
 
 ##ANL##
+host login.mcs
+    hostname login.mcs.anl.gov
+    user mkemp
+    forwardagent yes
+    controlmaster auto
+
 host mgt1 mgt1.ether mgt1.ether.alcf.anl.gov
     hostname mgt1.ether.alcf.anl.gov 
     LocalForward localhost:32074 sn1-mgmt.intrepid.alcf.anl.gov:32072
