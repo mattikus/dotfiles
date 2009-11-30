@@ -24,7 +24,7 @@ set wildmode=list:longest
 set scrolloff=3
 set shortmess=atTIs
 set verbose=0
-set textwidth=79
+set textwidth=78
 
 "set leaders
 let mapleader=','
@@ -39,6 +39,12 @@ set directory=~/tmp,/var/tmp,/tmp
 
 " No Help, please
 nmap <F1> <Esc>
+
+map Q gq
+
+" Fix :W to be :w
+command! W :w
+
 
 " NERDTree Options
 map <leader>d :NERDTreeToggle<CR>
@@ -75,10 +81,19 @@ if version > 700
 
   "set omnicomplete to be default for supertab
   let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+  
 endif
 
 
-setlocal indentkeys=!^F,o,O,<:>,0),0],0},=elif,=except,0#
+"turn off folds by default
 set nofoldenable
 
 if &t_Co > 16
@@ -88,21 +103,11 @@ else
 endif
 
 " ======================
-" Clojure Stuffs
-" ======================
-let clj_highlight_builtins = 1
-let clj_highlight_contrib = 1
-let clj_paren_rainbow = 1
-let clj_want_gorilla = 1
-let vimclojure#NailgunClient = "/Users/mkemp/bin/ng"
-" ======================
-
-" ======================
 " FuzzyFinder Stuffs
 " ======================
 "let g:FuzzyFinderOptions.Base.ignore_case = 1
 let g:fuzzy_ignore='*.pyc, *.tmp'
-let g:fuzzy_ceiling=20000
+let g:fuzzy_ceiling=10000
 let g:fuzzy_matching_limit=100
 let g:fuzzy_path_display='abbr'
 nnoremap <silent> <leader>t :FuzzyFinderTextMate<CR>
@@ -117,3 +122,6 @@ syntax enable
 "highlight characters past col 80
 "hi OverLength cterm=reverse
 "match OverLength "\%81v.*"
+
+"LaTeX stuffs
+let g:tex_flavor="latex"

@@ -1,8 +1,9 @@
 "Set some style guidelines for python files.
-setlocal tabstop=2
-setlocal softtabstop=2
-setlocal shiftwidth=2
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
 setlocal textwidth=79
 setlocal smarttab
 setlocal expandtab
 setlocal smartindent
+setlocal indentkeys=!^F,o,O,<:>,0),0],0},=elif,=except,0#
