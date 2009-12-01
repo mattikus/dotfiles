@@ -1,3 +1,4 @@
+#!/bin/zsh
 # Functions
 
 # Auto-rehashing.  Try command completion, if fails, rehash
@@ -67,10 +68,6 @@ function setprompt () {
   setopt prompt_subst
 
   # Finally, let's set the prompt
-  PROMPT='┌─[%{$fg[magenta]%}%m%{${reset_color}%}][%{$fg[green]%}%~%{${reset_color}%}]
+  PROMPT='┌─[%{$fg[magenta]%}%m%{${reset_color}%}][%{$fg[green]%}%~%{${reset_color}%}][%{$fg[yellow]%}${VIMODE}%{$reset_color%}]${vcs_info_msg_0_}
 └─> '
-  RPROMPT='${vcs_info_msg_0_}%{$fg[magenta]%}[%{$fg[yellow]%}${VIMODE}%{$fg[magenta]%}]%{$reset_color%}'
 }
-
-
-# vim:ft=zsh
