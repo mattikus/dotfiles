@@ -3,3 +3,5 @@ SnippyBundles.vba: call delete('/Users/matt/.vim/after/ftplugin/actionscript_sni
 netrw.vba: call delete('/Users/matt/.vim/plugin/netrwPlugin.vim')|call delete('/Users/matt/.vim/autoload/netrw.vim')|call delete('/Users/matt/.vim/autoload/netrwFileHandlers.vim')|call delete('/Users/matt/.vim/autoload/netrwSettings.vim')|call delete('/Users/matt/.vim/doc/pi_netrw.txt')|call delete('/Users/matt/.vim/syntax/netrw.vim')
 vimperator.vba: call delete('/Users/mkemp/.vim/syntax/vimperator.vim')|call delete('/Users/mkemp/.vim/ftdetect/vimperator.vim')
 bexec-v0.3.vba: call delete('/Users/mkemp/.vim/plugin/bexec.vim')|call delete('/Users/mkemp/.vim/doc/bexec.txt')
+delimitMate.vba: call delete('/Users/matt/.vim/doc/delimitMate.txt')|call delete('/Users/matt/.vim/plugin/delimitMate.vim')
+screen.vba: call delete('/Users/matt/.vim/doc/screen.txt')|call delete('/Users/matt/.vim/plugin/screen.vim')

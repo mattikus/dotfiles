@@ -1,1 +1,3 @@
-au BufRead,BufNewFile *.go            set filetype=go
+augroup filetypedetect
+  au! BufRead,BufNewFile *.go setf go
+augroup END

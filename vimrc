@@ -26,15 +26,24 @@ set shortmess=atTIs
 set verbose=0
 set textwidth=78
 
+"fix highlighting on some shell stuffs
+let g:is_posix=1
+
 "set leaders
 let mapleader=','
-let maplocalleader=';'
+let maplocalleader=','
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>L :set list!<CR>
+
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·
 
 "set xml.vim settings
-let xml_use_xhtml=1
+let xml_use_xhtml=1            
 
 "Don't leave .swp files littered about
-set backupdir=~/tmp,/var/tmp,/tmp
+set backupdir=~/tmp,/var/tmp,/tmp   
 set directory=~/tmp,/var/tmp,/tmp
 
 " No Help, please
@@ -111,7 +120,7 @@ let g:fuzzy_ceiling=10000
 let g:fuzzy_matching_limit=100
 let g:fuzzy_path_display='abbr'
 nnoremap <silent> <leader>t :FuzzyFinderTextMate<CR>
-nnoremap <silent> <leader>o  :FuzzyFinderTextMateRefreshFiles<CR>
+nnoremap <silent> <leader>o :FuzzyFinderTextMateRefreshFiles<CR>
 " ======================
 
 "turn on filetype matching
@@ -125,3 +134,13 @@ syntax enable
 
 "LaTeX stuffs
 let g:tex_flavor="latex"
+
+"==========
+"VimClojure
+"==========
+"let g:vimclojure#NailgunClient = "/Users/matt/bin/ng"
+let g:clj_want_gorilla = 1
+""let g:clj_paren_rainbow = 1
+let g:clj_highlight_contrib = 1
+
+let g:ScreenImpl="Tmux"
