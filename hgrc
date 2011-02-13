@@ -5,17 +5,16 @@ editor=vim
 
 [extensions]
 color=
-hgext.fetch=
-hgext.extdiff=
-hgext.mq=
-hgext.convert=
-# Requires latest mercurial 
-hgext.rebase=
-hgext.zeroconf=
-hgext.bookmarks=
-hgext.convert=
+extdiff=
+mq=
+convert=
+rebase=
+zeroconf=
+bookmarks=
+convert=
 
 [extdiff]
+cmd.kdiff3 =
 cmd.opendiff = opendiff
 
 [merge-tools]
@@ -24,6 +23,7 @@ filemerge.args = $local $other -ancestor $base -merge $output
 filemerge.gui = true
 meld.args = $base $local $other
 meld.gui = true
+kdiff3.args = $base $local $other -o $output
 
 [trusted]
 users = matt, www-data, http
