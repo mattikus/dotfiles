@@ -8,7 +8,7 @@ shopt -s progcomp
 complete -cf sudo
 
 #Aliases
-alias ls='ls -h --color=auto'
+#alias ls='ls -h --color=auto'
 alias ll='ls -l'
 alias lh='ls -lt $@ | head -10'
 alias grep='grep --color'
@@ -50,10 +50,12 @@ if [ "$PS1" ]; then
         ;;
     esac
 
-    D=$'\e[37;40m'
-    PINK=$'\e[35;40m'
-    GREEN=$'\e[32;40m'
-    ORANGE=$'\e[33;40m'
+    D=$'\e[37m'
+    PINK=$'\e[35m'
+    GREEN=$'\e[32m'
+    ORANGE=$'\e[33m'
+    RESET=$'\e[0m'
+    [ $(which vcprompt) ] || vcprompt=false
 
     #Check to see if im local or remote
     if [[ -n $(ps -ef |grep "sshd: \(mkemp\|mkemp2\|matt\)") ]]; then
@@ -63,7 +65,8 @@ if [ "$PS1" ]; then
     else
         #Local
         #PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]\$ '
-        PS1='\n${PINK}\u ${D}at ${ORANGE}\h ${D}in ${GREEN}\w ${PINK}$(vcprompt) ${D}\n$ '
+        #PS1='\n${PINK}\u ${D}at ${ORANGE}\h ${D}in ${GREEN}\w ${PINK}$(vcprompt) ${D}\n$ '
+        PS1='\n┌─[${PINK}\h${D}][${ORANGE}\w${D}]${PINK}$(vcprompt) ${D}\n└─> ${RESET}'
     fi
 fi
 
@@ -85,9 +88,9 @@ fi
 #Set up virtualenvwraper
 export WORKON_HOME=$HOME/.virtualenvs
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
-. $HOME/bin/virtualenvwrapper_bashrc
+. $HOME/bin/virtualenvwrapper.sh
 
-_virtualenvs ()
+_virtualenvs()
 {
     local cur="${COMP_WORDS[COMP_CWORD]}"
     COMPREPLY=( $(compgen -W "`ls $WORKON_HOME`" -- ${cur}) )
@@ -99,7 +102,3 @@ complete -o default -o nospace -F _virtualenvs rmvirtualenv
 #====Clojure====
 export CLOJURE_EXT="$HOME/clojure"
 export CLOJURE_OPTS="-Xms32M -Xmx128M -server"
-
-#====J====
-export JPY="$HOME/bin/j.py"
-[[ -f $HOME/bin/j.sh ]] && . $HOME/bin/j.sh
