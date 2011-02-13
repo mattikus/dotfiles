@@ -7,11 +7,11 @@ colors; compinit; promptinit;
 zle -N self-insert url-quote-magic
 
 # Source my configs
+[[ -f "${HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc.local"
 ZHOME="${HOME}/.zsh"
 source "${ZHOME}/environ_alias"
 source "${ZHOME}/style"
 source "${ZHOME}/personal_functions"
-[[ -f "${HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc.local"
 
 # Set options
 setopt appendhistory 
