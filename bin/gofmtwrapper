@@ -1,6 +1,0 @@
-#!/bin/sh
-tmp=$(mktemp -t gotmp)
-cat >$tmp
-gofmt -w $tmp 2>/dev/null 
-cat $tmp
-rm -f $tmp 
