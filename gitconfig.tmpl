@@ -1,4 +1,8 @@
 # vim: ft=gitconfig
+[core]
+	excludesfile = /Users/matt/.gitignore_global
+	autoclrf = input
+	safeclrf = true
 
 [github]
   user = mattikus
@@ -26,3 +30,9 @@
 
 [push]
   default = tracking
+
+[mergetool "p4merge"]
+  cmd =
+  keepTemporaries = false
+  trustExitCode = false
+  keepBackup = false
