@@ -1,3 +1,0 @@
-#! /bin/bash
-CMD=$@
-( ${CMD} ) && notify-send --urgency="normal" --icon="gtk-info" "Done" "${CMD} succeeded" || notify-send --icon="gtk-dialog-error" --urgency="critical" "Failed" "${CMD} failed"
