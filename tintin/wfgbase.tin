@@ -1,0 +1,6 @@
+#highlight {[to you]}               {yellow}
+#highlight {[to %+]}                {red}
+#highlight {%1 pages,%2}            {light blue}
+#highlight {%1 whisper%* to you,}   {blue}
+#highlight {[%d:%d]}                {blue}
+#read base.tin

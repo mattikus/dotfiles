@@ -1,2 +1,3 @@
 tintin/*.tin
 !tintin/base.tin
+!tintin/wfgbase.tin
