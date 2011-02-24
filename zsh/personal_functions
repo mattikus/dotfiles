@@ -30,6 +30,14 @@ function wj() {
   fi
 }
 
+function wj() { 
+  if [[ -f $(which wget) ]]; then
+    wget "$1" -O- | tar xJf -
+  elif [[ -f $(which curl) ]]; then
+    curl "$1" | tar xJf -
+  fi
+}
+
 function confmake() {
   ./configure "$@" && make -j3
 }
@@ -52,6 +60,11 @@ function precmd {
       print -Pn "\e]0;%n@%m: %~\a"
       ;;
   esac
+  if [ -n "$VIRTUAL_ENV" ]; then
+    virtual_env=[%{$fg[blue]%}$(basename "$VIRTUAL_ENV")%{$reset_color%}]
+  else
+    unset virtual_env
+  fi
 }
 
 # Executed before each command
@@ -68,6 +81,6 @@ function setprompt () {
   setopt prompt_subst
 
   # Finally, let's set the prompt
-  PROMPT='┌─[%{$fg[red]%}%m%{${reset_color}%}][%{$fg[green]%}%40<..<%~%{${reset_color}%}][%{$fg[yellow]%}${VIMODE}%{$reset_color%}]${vcs_info_msg_0_}
+  PROMPT='┌─[%{$fg[red]%}%m%{${reset_color}%}][%{$fg[green]%}%40<..<%~%{${reset_color}%}][%{$fg[yellow]%}${VIMODE}%{$reset_color%}]${vcs_info_msg_0_}${virtual_env}
 └─> '
 }

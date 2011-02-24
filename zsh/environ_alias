@@ -17,6 +17,8 @@ export HIST_FIND_NO_DUPS=true
 if [[ -f $(which virtualenvwrapper.sh) ]]; then
   export WORKON_HOME=$HOME/.virtualenvs
   export PIP_VIRTUALENV_BASE=$WORKON_HOME
+  export VIRTUAL_ENV_DISABLE_PROMPT=1
+  export VIRTUALENV_USE_DISTRIBUTE=1
   [[ -d $WORKON_HOME ]] || mkdir -p $WORKON_HOME
   source $(which virtualenvwrapper.sh)
 fi
