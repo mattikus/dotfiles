@@ -27,16 +27,14 @@ function confmake() {
 }
 
 #Shell Environment Variables
-export PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/games:${PATH}:/usr/sbin:/sbin"
+export PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
 export EDITOR="vim"
 export VISUAL="vim"
-eval $(dircolors -b) # export LS_COLORS
+which dircolors >/dev/null 2>&1 && eval $(dircolors -b) # export LS_COLORS
 export LC_ALL="$LANG"
 export PYTHONSTARTUP="${HOME}/.pythonrc"
-[[ -d /usr/share/doc/python ]] && export PYTHONDOCS="/usr/share/doc/python:$PYTHONDOCS"
 export HISTCONTROL=ignoredups
 export DOTFILES="${HOME}/.dotfiles"
-#export CDPATH=".:~"
 export INPUTRC=~/.inputrc
 
 #Colorful prompt
@@ -55,18 +53,14 @@ if [ "$PS1" ]; then
     GREEN=$'\e[32m'
     ORANGE=$'\e[33m'
     RESET=$'\e[0m'
-    [ $(which vcprompt) ] || vcprompt=false
 
     #Check to see if im local or remote
     if [[ -n $(ps -ef |grep "sshd: \(mkemp\|mkemp2\|matt\)") ]]; then
         #Remote
-        #PS1='\[\033[01;35m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]\$ '
-        PS1='\n${PINK}\u ${D}at ${ORANGE}\h ${D}in ${PINK}\w ${PINK}$(vcprompt) ${D}\n$ '
+        PS1='\n┌─[${GREEN}\h${D}][${ORANGE}\w${D}]${PINK} ${D}\n└─> ${RESET}'
     else
         #Local
-        #PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]\$ '
-        #PS1='\n${PINK}\u ${D}at ${ORANGE}\h ${D}in ${GREEN}\w ${PINK}$(vcprompt) ${D}\n$ '
-        PS1='\n┌─[${PINK}\h${D}][${ORANGE}\w${D}]${PINK}$(vcprompt) ${D}\n└─> ${RESET}'
+        PS1='\n┌─[${PINK}\h${D}][${ORANGE}\w${D}]${PINK} ${D}\n└─> ${RESET}'
     fi
 fi
 
@@ -85,20 +79,19 @@ if [[ ${BASH_VERSION::1} == '4' ]]; then
 fi
 
 #====virtualenv Wrapper====
-#Set up virtualenvwraper
-export WORKON_HOME=$HOME/.virtualenvs
-export PIP_VIRTUALENV_BASE=$WORKON_HOME
-. $HOME/bin/virtualenvwrapper.sh
+if [ -f $(which virtualenvwrapper.sh) ]; then
+  export WORKON_HOME=$HOME/.virtualenvs
+  export PIP_VIRTUALENV_BASE=$WORKON_HOME
 
-_virtualenvs()
-{
-    local cur="${COMP_WORDS[COMP_CWORD]}"
-    COMPREPLY=( $(compgen -W "`ls $WORKON_HOME`" -- ${cur}) )
-}
+  #Set up virtualenvwraper
+  . $(which virtualenvwrapper.sh)
 
-complete -o default -o nospace -F _virtualenvs workon
-complete -o default -o nospace -F _virtualenvs rmvirtualenv
+  _virtualenvs()
+  {
+      local cur="${COMP_WORDS[COMP_CWORD]}"
+      COMPREPLY=( $(compgen -W "`ls $WORKON_HOME`" -- ${cur}) )
+  }
 
-#====Clojure====
-export CLOJURE_EXT="$HOME/clojure"
-export CLOJURE_OPTS="-Xms32M -Xmx128M -server"
+  complete -o default -o nospace -F _virtualenvs workon
+  complete -o default -o nospace -F _virtualenvs rmvirtualenv
+fi
