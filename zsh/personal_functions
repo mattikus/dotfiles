@@ -15,26 +15,26 @@ function ztmpl() {
 }
 
 function wz() { 
-  if [[ -f $(which wget) ]]; then
-    wget "$1" -O- | tar xzf -
-  elif [[ -f $(which curl) ]]; then
-    curl "$1" | tar xzf -
+  if $(which wget &>/dev/null); then
+    wget "$1" -O- | tar xz
+  elif $(which curl &>/dev/null); then
+    curl "$1" | tar xz
   fi
 }
 
 function wj() { 
-  if [[ -f $(which wget) ]]; then
-    wget "$1" -O- | tar xjf -
-  elif [[ -f $(which curl) ]]; then
-    curl "$1" | tar xjf -
+  if $(which wget &>/dev/null); then
+    wget "$1" -O- | tar xj
+  elif $(which curl &>/dev/null); then
+    curl "$1" | tar xj
   fi
 }
 
-function wj() { 
-  if [[ -f $(which wget) ]]; then
-    wget "$1" -O- | tar xJf -
-  elif [[ -f $(which curl) ]]; then
-    curl "$1" | tar xJf -
+function wJ() { 
+  if $(which wget &>/dev/null); then
+    wget "$1" -O- | tar xJ
+  elif $(which curl &>/dev/null); then
+    curl "$1" | tar xJ
   fi
 }
 
