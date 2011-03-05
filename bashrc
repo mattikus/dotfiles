@@ -30,7 +30,7 @@ function confmake() {
 export PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
 export EDITOR="vim"
 export VISUAL="vim"
-which dircolors >/dev/null 2>&1 && eval $(dircolors -b) # export LS_COLORS
+which dircolors >/dev/null && eval $(dircolors -b ${HOME}/.dircolors) # export LS_COLORS
 export LC_ALL="$LANG"
 export PYTHONSTARTUP="${HOME}/.pythonrc"
 export HISTCONTROL=ignoredups
