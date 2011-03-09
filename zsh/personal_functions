@@ -2,7 +2,7 @@
 # Functions
 
 # Auto-rehashing.  Try command completion, if fails, rehash
-function compctl_rehash { rehash; reply=() }
+function compctl_rehash { hash -r; reply=() }
 compctl -C -c + -K compctl_rehash + -c
 
 function ztmpl() {
@@ -53,7 +53,7 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 # Executed before each prompt
-function precmd {
+function precmd() {
   vcs_info 'prompt'
   case $TERM in
     xterm*|*rxvt*|gnome*)
@@ -68,7 +68,7 @@ function precmd {
 }
 
 # Executed before each command
-function preexec () {
+function preexec() {
   case $TERM in
     xterm*|*rxvt*|gnome*)
       print -n "\e]0;$1\a"
@@ -76,11 +76,19 @@ function preexec () {
   esac
 }
 
-function setprompt () {
+if ps -u$USER -f | grep "sshd: $USER" | grep -v grep; then
+  eval ucolor='%{$fg[cyan]%}'
+else
+  eval ucolor='%{$fg[red]%}'
+fi
+
+function setprompt() {
   # Need this, so the prompt will work
   setopt prompt_subst
 
   # Finally, let's set the prompt
-  PROMPT='┌─[%{$fg[red]%}%m%{${reset_color}%}][%{$fg[green]%}%40<..<%~%{${reset_color}%}][%{$fg[yellow]%}${VIMODE}%{$reset_color%}]${vcs_info_msg_0_}${virtual_env}
+  PROMPT='┌─[$ucolor%m%{${reset_color}%}][%{$fg[green]%}%40<..<%~%{${reset_color}%}][%{$fg[yellow]%}${VIMODE}%{$reset_color%}]${vcs_info_msg_0_}${virtual_env}
 └─> '
+  #PROMPT='┌─[%{$fg[red]%}%m%{${reset_color}%}][%{$fg[green]%}%40<..<%~%{${reset_color}%}][%{$fg[yellow]%}${VIMODE}%{$reset_color%}]${vcs_info_msg_0_}${virtual_env}
+#└─> '
 }
