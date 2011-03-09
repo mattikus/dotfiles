@@ -47,7 +47,7 @@ XTerm*scrollTtyOutput:  false
 *background:	#1C1C1C
 *foreground:	#A9A9A9
 !black
-*color0:	#000000
+*color0:	#1C1C1C
 *color8:	#4d4d4d
 !red
 *color1:	#D81860
