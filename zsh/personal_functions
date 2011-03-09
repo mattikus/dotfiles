@@ -76,7 +76,7 @@ function preexec() {
   esac
 }
 
-if ps -u$USER -f | grep "sshd: $USER" | grep -v grep; then
+if ps -u$USER -f | grep "sshd: $USER" | grep -v grep &>/dev/null; then
   eval ucolor='%{$fg[cyan]%}'
 else
   eval ucolor='%{$fg[red]%}'
