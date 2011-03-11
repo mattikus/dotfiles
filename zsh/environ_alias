@@ -1,8 +1,7 @@
 #Shell Environment Variables
-export PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/games:${PATH}:/usr/sbin:/sbin"
+export PATH="${HOME}/bin:${HOME}/.local/bin:/usr/games:${PATH}"
 export EDITOR="vim"
 export VISUAL="vim -f"
-[[ -f $(which dircolors) ]] && eval $(dircolors -b) # export LS_COLORS
 export LC_ALL="$LANG"
 export PYTHONSTARTUP="${HOME}/.pythonrc"
 export DOTFILES="${HOME}/.dotfiles"
@@ -13,9 +12,12 @@ export SAVEHIST=30000
 export HIST_IGNORE_DUPS=true
 export HIST_FIND_NO_DUPS=true
 
+# Set up dircolors
+eval $(dircolors -b ${HOME}/.dircolors) 
+
 #Set up virtualenvwraper
 if [[ -f $(which virtualenvwrapper.sh) ]]; then
-  export WORKON_HOME=$HOME/.virtualenvs
+  export WORKON_HOME=${HOME}/.virtualenvs
   export PIP_VIRTUALENV_BASE=$WORKON_HOME
   export PIP_RESPECT_VIRTUALENV=true
   export VIRTUAL_ENV_DISABLE_PROMPT=true
@@ -36,11 +38,5 @@ case "$(uname)" in
     [[ -n $(which colorls) ]] && alias ls='colorls -GFh'
     ;;
 esac
-alias ll='ls -l'
-alias lh='ls -lt $@ | head -10'
-alias grep='grep --color'
-
-# Set up dircolors
-eval $(dircolors -b ${HOME}/.dircolors) 
 
 # vim:ft=zsh
