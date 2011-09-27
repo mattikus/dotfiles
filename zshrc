@@ -7,16 +7,16 @@ colors; compinit; promptinit;
 zle -N self-insert url-quote-magic
 
 # Source my configs
-[[ -f "${HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc.local"
+[ -f "${HOME}/.zshrc.local" ] && source "${HOME}/.zshrc.local"
 ZHOME="${HOME}/.zsh"
 source "${ZHOME}/environ_alias"
 source "${ZHOME}/style"
 source "${ZHOME}/personal_functions"
 
 # Set options
-setopt appendhistory 
-setopt extendedglob 
-setopt notify 
+setopt appendhistory
+setopt extended_glob
+setopt notify
 setopt cdablevars
 setopt interactivecomments
 setopt nohup
@@ -24,7 +24,7 @@ setopt vi
 unsetopt beep
 
 # Create my git configuration unless it's already up-to-date.
-ztmpl $DOTFILES/gitconfig.tmpl $HOME/.gitconfig
+[ -f $DOTFILES/gitconfig.tmpl ] && ztmpl $DOTFILES/gitconfig.tmpl $HOME/.gitconfig
 
 # Create my prompt
 setprompt

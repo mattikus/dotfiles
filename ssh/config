@@ -1,22 +1,19 @@
-###Classes###
-host csc
-  hostname classes.csc.lsu.edu
-  user cs430414
-  ControlMaster auto
-#############
+host *
+  ControlPath ~/.ssh/master-%r@%h:%p
+  ControlPersist 4h
 
 ###vps###
 host vps
   hostname mattikus.com
   user matt
   forwardAgent yes
-  port 64000
+  port 443
   ControlMaster auto
 
-host proxy-vps
+host vps-proxy
   hostname mattikus.com
   user matt
-  port 64000
+  port 443
   DynamicForward 8080
 ################
 
@@ -28,16 +25,8 @@ host *.mork *.local
   ControlMaster auto
   port 64000
 
-host home
-  hostname sevinn.ath.cx
-  user matt
-  forwardAgent yes
-  controlMaster auto
-  port 64000
-
 host mark mark.mork
   user matthew
-  ControlPath ~/.ssh/master-%r@%h:%p
   PermitLocalCommand yes
 ##################
 
@@ -52,33 +41,33 @@ host bb
 host *.anl.gov
   user mkemp
 
-host login.mcs login.mcs.anl.gov
-  hostname login.mcs.anl.gov
+host login*.mcs login*.mcs.anl.gov
   user mkemp
   forwardagent yes
   ControlMaster auto
 
 host mgt1 mgt1.ether mgt1.ether.alcf.anl.gov
-  hostname mgt1.ether.alcf.anl.gov 
+  hostname mgt1.ether.alcf.anl.gov
+  user mkemp
   forwardagent yes
   ControlMaster auto
 
 host mgt2 mgt2.ether mgt2.ether.alcf.anl.gov
-  hostname mgt2.ether.alcf.anl.gov 
+  hostname mgt2.ether.alcf.anl.gov
+  user mkemp
   forwardagent yes
   ControlMaster auto
 
-host mgt3 mgt3.ether mgt3.ether.alcf.anl.gov
-  ProxyCommand ssh -A mgt1.ether netcat mgt3.ether %p
-
 host namby namby.mcs namby.mcs.anl.gov
   hostname namby.mcs.anl.gov
+  user mkemp
   forwardagent yes
-  LocalForward localhost:4000 status.alcf.anl.gov:4000
+  #LocalForward localhost:4000 status.alcf.anl.gov:4000
   ControlMaster auto
 
 host status
   ProxyCommand ssh -A namby netcat status.alcf.anl.gov %p
+  user mkemp
   ControlMaster auto
 
 #host status status.alcf status.alcf.anl.gov
@@ -87,13 +76,21 @@ host status
 
 host login8.surveyor login8.surveyor.alcf.anl.gov
   hostname login8.surveyor.alcf.anl.gov
+  user mkemp
   forwardagent yes
-  LocalForward localhost:5050 login8.surveyor:5050
+  #LocalForward localhost:5050 login8.surveyor:5050
   ControlMaster auto
 
 host login10.intrepid login10.intrepid.alcf.anl.gov
   hostname login10.intrepid.alcf.anl.gov
+  user mkemp
   forwardagent yes
-  LocalForward localhost:5050 login10.intrepid:5050
+  #LocalForward localhost:5050 login10.intrepid:5050
   ControlMaster auto
 ######
+
+### no.de ###
+host foobar foobar.no.de
+  hostname foobar.no.de
+  user node
+
