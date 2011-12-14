@@ -1,5 +1,5 @@
 #Shell Environment Variables
-export PATH="${HOME}/bin:${HOME}/.local/bin:/usr/games:${PATH}"
+export PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/bin:/usr/games:${PATH}"
 export EDITOR="vim"
 export VISUAL="vim -f"
 export LC_ALL="$LANG"
@@ -13,7 +13,7 @@ export HIST_IGNORE_DUPS=true
 export HIST_FIND_NO_DUPS=true
 
 # Set up dircolors
-eval $(dircolors -b ${HOME}/.dircolors) 
+[[ -f `which dircolors` ]] && eval $(dircolors -b ${HOME}/.dircolors) 
 
 #Set up virtualenvwraper
 if [[ -f $(which virtualenvwrapper.sh) ]]; then
@@ -22,6 +22,7 @@ if [[ -f $(which virtualenvwrapper.sh) ]]; then
   export PIP_RESPECT_VIRTUALENV=true
   export VIRTUAL_ENV_DISABLE_PROMPT=true
   export VIRTUALENV_USE_DISTRIBUTE=true
+  export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
   [[ -d $WORKON_HOME ]] || mkdir -p $WORKON_HOME
   source $(which virtualenvwrapper.sh)
 fi
@@ -39,4 +40,4 @@ case "$(uname)" in
     ;;
 esac
 
-# vim:ft=zsh
+# vim: set ft=zsh:

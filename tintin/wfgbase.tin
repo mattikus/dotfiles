@@ -3,4 +3,5 @@
 #highlight {%1 pages,%2}            {light blue}
 #highlight {%1 whisper%* to you,}   {blue}
 #highlight {[%d:%d]}                {blue}
+#highlight {You say, %+}            {white}
 #read base.tin

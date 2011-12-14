@@ -1,6 +1,6 @@
 host *
   ControlPath ~/.ssh/master-%r@%h:%p
-  ControlPersist 4h
+  ControlPersist 2h
 
 ###vps###
 host vps
@@ -46,6 +46,12 @@ host login*.mcs login*.mcs.anl.gov
   forwardagent yes
   ControlMaster auto
 
+host harvey harvey.surveyor.alcf.anl.gov
+  hostname harvey.surveyor.alcf.anl.gov
+  user mkemp
+  forwardagent yes
+  ControlMaster auto
+
 host mgt1 mgt1.ether mgt1.ether.alcf.anl.gov
   hostname mgt1.ether.alcf.anl.gov
   user mkemp
@@ -68,6 +74,12 @@ host namby namby.mcs namby.mcs.anl.gov
 host status
   ProxyCommand ssh -A namby netcat status.alcf.anl.gov %p
   user mkemp
+  ControlMaster auto
+
+host ikon
+  ProxyCommand ssh -A namby netcat ikon.mcs.anl.gov %p
+  user mkemp
+  LocalForward localhost:3306 ikon.mcs.anl.gov:3306
   ControlMaster auto
 
 #host status status.alcf status.alcf.anl.gov

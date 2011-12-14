@@ -1,4 +1,3 @@
 #config {command color} {<139>}
-#config {repeat enter} {on}
 #config {wordwrap} {on}
 #split
