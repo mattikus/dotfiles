@@ -1,5 +1,8 @@
 #Shell Environment Variables
-export PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/bin:/usr/games:${PATH}"
+PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/bin:/usr/games:${PATH}"
+[[ 'Darwin' == $(uname -s) ]] && PATH="${HOME}/Library/Python/2.7/bin:${PATH}"
+export PATH
+
 export EDITOR="vim"
 export VISUAL="vim -f"
 export LC_ALL="$LANG"
@@ -22,13 +25,13 @@ if [[ -f $(which virtualenvwrapper.sh) ]]; then
   export PIP_RESPECT_VIRTUALENV=true
   export VIRTUAL_ENV_DISABLE_PROMPT=true
   export VIRTUALENV_USE_DISTRIBUTE=true
-  export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+  export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
   [[ -d $WORKON_HOME ]] || mkdir -p $WORKON_HOME
   source $(which virtualenvwrapper.sh)
 fi
 
 #Aliases
-case "$(uname)" in
+case "$(uname -s)" in
   'Darwin')
     alias ls='ls -GFh'
     ;;
