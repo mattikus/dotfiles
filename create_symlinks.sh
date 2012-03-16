@@ -4,7 +4,7 @@
 path=$HOME/.dotfiles
 pathdir=$(echo $path | sed -e 's/.*\///')
 
-excludes=(create_symlinks.sh movein.sh config.h gitconfig.tmpl)
+excludes=(create_symlinks.sh movein.sh config.h gitconfig.tmpl old)
 special_dirs=(ssh)
 non_dot_dirs=(bin)
 config_dirs=(awesome openbox)
