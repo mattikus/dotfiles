@@ -1,108 +1,88 @@
+### Defaults ###
 host *
   ControlPath ~/.ssh/master-%r@%h:%p
-  ControlPersist 2h
+  ControlMaster auto
+  forwardAgent yes
+################
 
 ###vps###
 host vps
   hostname mattikus.com
   user matt
-  forwardAgent yes
-  port 443
+  port 64000
   ControlMaster auto
 
 host vps-proxy
   hostname mattikus.com
   user matt
-  port 443
+  port 64000
   DynamicForward 8080
 ################
 
 ###Home Machines###
-host *.mork *.local
+host balthazar
   user matt
-  forwardAgent yes
   forwardX11trusted yes
-  ControlMaster auto
   port 64000
-
-host mark mark.mork
-  user matthew
   PermitLocalCommand yes
+
+host home
+   user matt
+   hostname meepers.dyndns.com
+   port 64000
 ##################
-
-
-###bitbucket###
-host bb
-  hostname bitbucket.org
-  compression yes
-###############
 
 ##ANL##
 host *.anl.gov
   user mkemp
 
-host login*.mcs login*.mcs.anl.gov
+host cetus veas
+  host %h.alcf.anl.gov
   user mkemp
-  forwardagent yes
-  ControlMaster auto
 
-host harvey harvey.surveyor.alcf.anl.gov
+host trebuchet catapult
+  host %h.mcp.alcf.anl.gov
+  user mkemp
+
+host login?.mcs login?.mcs.anl.gov
+  user mkemp
+
+host harvey harvey.surveyor harvey.surveyor.alcf.anl.gov
   hostname harvey.surveyor.alcf.anl.gov
   user mkemp
-  forwardagent yes
-  ControlMaster auto
 
 host mgt1 mgt1.ether mgt1.ether.alcf.anl.gov
   hostname mgt1.ether.alcf.anl.gov
   user mkemp
-  forwardagent yes
-  ControlMaster auto
 
 host mgt2 mgt2.ether mgt2.ether.alcf.anl.gov
   hostname mgt2.ether.alcf.anl.gov
   user mkemp
-  forwardagent yes
-  ControlMaster auto
 
 host namby namby.mcs namby.mcs.anl.gov
   hostname namby.mcs.anl.gov
   user mkemp
-  forwardagent yes
-  #LocalForward localhost:4000 status.alcf.anl.gov:4000
-  ControlMaster auto
 
 host status
-  ProxyCommand ssh -A namby netcat status.alcf.anl.gov %p
   user mkemp
-  ControlMaster auto
+  ProxyCommand ssh -A namby netcat status.alcf.anl.gov %p
 
 host ikon
-  ProxyCommand ssh -A namby netcat ikon.mcs.anl.gov %p
   user mkemp
-  LocalForward localhost:3306 ikon.mcs.anl.gov:3306
-  ControlMaster auto
-
-#host status status.alcf status.alcf.anl.gov
-  #hostname status.alcf.anl.gov
-  #ControlMaster auto
+  ProxyCommand ssh -A namby netcat ikon.mcs.anl.gov %p
+  #LocalForward localhost:3306 ikon.mcs.anl.gov:3306
 
 host login8.surveyor login8.surveyor.alcf.anl.gov
   hostname login8.surveyor.alcf.anl.gov
   user mkemp
-  forwardagent yes
-  #LocalForward localhost:5050 login8.surveyor:5050
-  ControlMaster auto
 
 host login10.intrepid login10.intrepid.alcf.anl.gov
   hostname login10.intrepid.alcf.anl.gov
   user mkemp
-  forwardagent yes
-  #LocalForward localhost:5050 login10.intrepid:5050
-  ControlMaster auto
 ######
 
 ### no.de ###
 host foobar foobar.no.de
   hostname foobar.no.de
   user node
-
+#############
