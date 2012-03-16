@@ -1,6 +1,6 @@
 host *
   ControlPath ~/.ssh/master-%r@%h:%p
-  ControlPersist 2h
+  #ControlPersist 2h
 
 ###vps###
 host vps
