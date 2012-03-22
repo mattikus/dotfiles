@@ -59,6 +59,10 @@ function precmd() {
     xterm*|*rxvt*|gnome*)
       print -Pn "\e]0;%n@%m: %~\a"
       ;;
+    screen*)
+      print -Pn "\e]0;%n@%m: %~\a"
+      print -Pn "\e]2;%m\a"
+      ;;
   esac
   if [ -n "$VIRTUAL_ENV" ]; then
     virtual_env=[%{$fg[blue]%}$(basename "$VIRTUAL_ENV")%{$reset_color%}]
