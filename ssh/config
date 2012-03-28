@@ -23,7 +23,6 @@ host vps-proxy
 host balthazar
   user matt
   forwardX11trusted yes
-  port 64000
   PermitLocalCommand yes
 
 host home
@@ -40,8 +39,12 @@ host cetus veas
   host %h.alcf.anl.gov
   user mkemp
 
-host trebuchet catapult
-  host %h.mcp.alcf.anl.gov
+host cata
+  hostname catapult.pub.alcf.anl.gov
+  user mkemp
+
+host treb
+  hostname trebuchet.pub.alcf.anl.gov
   user mkemp
 
 host login?.mcs login?.mcs.anl.gov
