@@ -1,32 +1,36 @@
-# Set my autoload path so i can have the latest greatest even on older zsh
-[[ $fpath = *${HOME}* ]] || fpath=("${HOME}/.zsh/functions" $fpath)
+# Executed before each prompt
+function precmd() {
+  vcs_info 'prompt'
+  case "$TERM" in
+    xterm*|*rxvt*|gnome*)
+      print -Pn "\e]0;%n@%m: %~\a"
+      ;;
+    screen*)
+      print -Pn "\e]0;%n@%m: %~\a"
+      print -Pn "\e]2;%m\a"
+      ;;
+  esac
+  if [ -n "$VIRTUAL_ENV" ]; then
+    virtual_env=[%{$fg[blue]%}$(basename "$VIRTUAL_ENV")%{$reset_color%}]
+  else
+    unset virtual_env
+  fi
+}
 
-# Load up functions for use in my configs
-autoload -Uz colors compinit promptinit zmv vcs_info url-quote-magic
-colors; compinit; promptinit;
-zle -N self-insert url-quote-magic
+# Executed before each command
+function preexec() {
+  case "$TERM" in
+    xterm*|*rxvt*|gnome*)
+      print -n "\e]0;$1\a"
+      ;;
+  esac
+}
 
-# Source my configs
-[ -f "${HOME}/.zshrc.local" ] && source "${HOME}/.zshrc.local"
-ZHOME="${HOME}/.zsh"
-source "${ZHOME}/environ_alias"
-source "${ZHOME}/style"
-source "${ZHOME}/personal_functions"
-
-# Set options
-setopt appendhistory
-setopt extended_glob
-setopt notify
-setopt cdablevars
-setopt interactivecomments
-setopt nohup
-setopt vi
-unsetopt beep
-
-# Create my git configuration unless it's already up-to-date.
-if [ -f $DOTFILES/gitconfig.tmpl ] && [ -f $HOME/.github-token ]; then
-  ztmpl $DOTFILES/gitconfig.tmpl $HOME/.gitconfig
+if [ -n "$SSH_TTY" ]; then
+  eval ucolor='%{$fg[blue]%}'
+else
+  eval ucolor='%{$fg[red]%}'
 fi
 
-# Create my prompt
-setprompt
+export PROMPT='┌─[$ucolor%m%{${reset_color}%}][%{$fg[green]%}%40<..<%~%{${reset_color}%}][%{$fg[yellow]%}${VIMODE}%{$reset_color%}]${vcs_info_msg_0_}${virtual_env}
+└─> '

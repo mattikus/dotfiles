@@ -1,4 +1,67 @@
-# ZSH Style Config
+# Load up functions for use in my configs
+autoload -Uz colors compinit promptinit zmv vcs_info url-quote-magic
+colors; compinit; promptinit;
+
+# Source my local configs
+[ -f "${HOME}/.zshrc.local" ] && . "${HOME}/.zshrc.local" # deprecated
+[ -f "${HOME}/.zlocal" ] && . "${HOME}/.zlocal"
+
+# Set options
+setopt appendhistory
+setopt autolist
+setopt cdablevars
+setopt completealiases
+setopt completeinword
+setopt extended_glob
+setopt interactivecomments
+setopt nobeep
+setopt nohup
+setopt notify
+setopt prompt_subst
+setopt vi
+
+# Auto-rehashing.  Try command completion, if fails, rehash
+function compctl_rehash { hash -r; reply=() }
+compctl -C -c + -K compctl_rehash + -c
+
+# Utility functions for downloading
+function wz() { 
+  if $(which wget &>/dev/null); then
+    wget "$1" -O- | tar xz
+  elif $(which curl &>/dev/null); then
+    curl "$1" | tar xz
+  fi
+}
+
+function wj() { 
+  if $(which wget &>/dev/null); then
+    wget "$1" -O- | tar xj
+  elif $(which curl &>/dev/null); then
+    curl "$1" | tar xj
+  fi
+}
+
+function wJ() { 
+  if $(which wget &>/dev/null); then
+    wget "$1" -O- | tar xJ
+  elif $(which curl &>/dev/null); then
+    curl "$1" | tar xJ
+  fi
+}
+
+### ZLE Bits ###
+
+# If I am using vi keys, I want to know what mode I'm currently using.
+# zle-keymap-select is executed every time KEYMAP changes.
+# From http://zshwiki.org/home/examples/zlewidgets
+function zle-line-init zle-keymap-select {
+    VIMODE="${${KEYMAP/vicmd/c}/(main|viins)/i}"
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+zle -N self-insert url-quote-magic
 
 # Completion styles
 # allow approximate
@@ -12,7 +75,7 @@ zstyle ':completion:*:default' list-prompt '%S%M matches%s'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:manuals.(^1*)' insert-sections true
-zstyle ':completion:*' menu select
+zstyle ':completion:*' menu autoselect
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' accept-exact yes
 zstyle ':completion:*' expand yes
@@ -40,5 +103,3 @@ zstyle ':vcs_info:*:prompt:*' stagedstr '²'    # display ² if there are staged
 zstyle ':vcs_info:*:prompt:*' actionformats "${FMT_BRANCH}${FMT_ACTION}"
 zstyle ':vcs_info:*:prompt:*' formats       "${FMT_BRANCH}"
 zstyle ':vcs_info:*:prompt:*' nvcsformats   "" ""
-
-# vim: ft=zsh

@@ -1,25 +1,20 @@
-#Shell Environment Variables
-PATH="${HOME}/bin:${HOME}/.local/bin:/usr/local/bin:/usr/games:${PATH}"
-[[ 'Darwin' == $(uname -s) ]] && PATH="${HOME}/Library/Python/2.7/bin:${PATH}"
-export PATH
-
 export EDITOR="vim"
 export VISUAL="vim -f"
 export LC_ALL="$LANG"
 export PYTHONSTARTUP="${HOME}/.pythonrc"
 export DOTFILES="${HOME}/.dotfiles"
-export INPUTRC=~/.inputrc
-export HISTFILE=~/.zsh_history
+export INPUTRC="${HOME}/.inputrc"
+export HISTFILE="${HOME}/.zsh_history"
 export HISTSIZE=30000
 export SAVEHIST=30000
 export HIST_IGNORE_DUPS=true
 export HIST_FIND_NO_DUPS=true
 
 # Set up dircolors
-[[ -f `which dircolors` ]] && eval $(dircolors -b ${HOME}/.dircolors) 
+[[ which -s dircolors ]] && eval $(dircolors -b ${HOME}/.dircolors) 
 
 #Set up virtualenvwraper
-if [[ -f $(which virtualenvwrapper.sh) ]]; then
+if which -s virtualenvwrapper.sh; then
   export WORKON_HOME=${HOME}/.virtualenvs
   export PIP_VIRTUALENV_BASE=$WORKON_HOME
   export PIP_RESPECT_VIRTUALENV=true
@@ -39,8 +34,7 @@ case "$(uname -s)" in
     alias ls='ls --color=always -Fh'
     ;;
   'NetBSD')
-    [[ -n $(which colorls) ]] && alias ls='colorls -GFh'
+    [[ which -s colorls ]] && alias ls='colorls -GFh'
     ;;
 esac
 
-# vim: set ft=zsh:
