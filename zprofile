@@ -2,6 +2,8 @@
 autoload -Uz colors compinit promptinit zmv vcs_info url-quote-magic
 colors; compinit; promptinit;
 
+export PATH="${HOME}/bin:${PATH}"
+
 # Source my local configs
 [ -f "${HOME}/.zshrc.local" ] && . "${HOME}/.zshrc.local" # deprecated
 [ -f "${HOME}/.zlocal" ] && . "${HOME}/.zlocal"
@@ -9,7 +11,6 @@ colors; compinit; promptinit;
 # Set options
 setopt appendhistory
 setopt autolist
-setopt cdablevars
 setopt completealiases
 setopt completeinword
 setopt extended_glob
@@ -63,33 +64,23 @@ zle -N zle-keymap-select
 
 zle -N self-insert url-quote-magic
 
-# Completion styles
-# allow approximate
-zmodload zsh/complist
-zstyle ':completion:*' completer _complete _match _approximate 
-zstyle ':completion:*:match:*' original only
-zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX + $#SUFFIX) / 3 )) )'
-zstyle ':completion:*:descriptions' format "- %d -"
-zstyle ':completion:*:corrections' format "- %d - (errors %e})"
-zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+### Completion Bits ###
+
+zstyle ':completion:*' completer _expand _complete _ignored _match _approximate _prefix
+zstyle ':completion:*' file-sort modification
+zstyle ':completion:*' format '- %d -'
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*:manuals' separate-sections true
-zstyle ':completion:*:manuals.(^1*)' insert-sections true
-zstyle ':completion:*' menu autoselect
-zstyle ':completion:*' verbose yes
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' list-suffixes true
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
+zstyle ':completion:*' max-errors 1
+zstyle ':completion:*' menu select=3
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' verbose true
 zstyle ':completion:*' accept-exact yes
-zstyle ':completion:*' expand yes
-zstyle ':completion:*' use-cache 1
-zstyle ':completion::complete:*' cache-path ~/.zsh_cache_$HOST
-zstyle ':completion:*' use-perl yes
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-compctl -g "*.tar *.tgz *.tz *.tar.Z *.tar.bz2 *.tZ *.tar.gz" + -g "*(-/) .*(-/)" tar
 
-# tab completion for PID :D
-zstyle ':completion:*:*:kill:*' menu yes select
-zstyle ':completion:*:kill:*' force-list always
-
-# cd not select parent dir. 
+## cd not select parent dir. 
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
 #set up vcs_info

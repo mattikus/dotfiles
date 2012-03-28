@@ -11,10 +11,10 @@ export HIST_IGNORE_DUPS=true
 export HIST_FIND_NO_DUPS=true
 
 # Set up dircolors
-[[ which -s dircolors ]] && eval $(dircolors -b ${HOME}/.dircolors) 
+which dircolors &> /dev/null && eval $(dircolors -b ${HOME}/.dircolors) 
 
 #Set up virtualenvwraper
-if which -s virtualenvwrapper.sh; then
+if which virtualenvwrapper.sh &> /dev/null; then
   export WORKON_HOME=${HOME}/.virtualenvs
   export PIP_VIRTUALENV_BASE=$WORKON_HOME
   export PIP_RESPECT_VIRTUALENV=true

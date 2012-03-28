@@ -1,13 +1,23 @@
 #!/bin/bash
 
-#path=$(dirname $0)
 path=$HOME/.dotfiles
 pathdir=$(echo $path | sed -e 's/.*\///')
 
-excludes=(create_symlinks.sh movein.sh config.h gitconfig.tmpl old)
+excludes=(create_symlinks.sh movein.sh config.h gitconfig.tmpl archive)
 special_dirs=(ssh)
 non_dot_dirs=(bin)
 config_dirs=(awesome openbox)
+
+function tmpl() {
+  # $1 = template; $2 = output file
+  cat $1 | perl -p -e 's/\$\{([^}]+)\}/defined $ENV{$1} ? $ENV{$1} : $&/eg' > $2
+}
+
+# Create my git configuration unless it's already up-to-date.
+if [ -f $DOTFILES/gitconfig.tmpl ] && [ -f $HOME/.github-token ]; then
+  GITHUB_TOKEN=$(cat $HOME/.github-token) tmpl $DOTFILES/gitconfig.tmpl $HOME/.gitconfig
+fi
+
 
 echo -n "Creating symlinks..."
 cd "$path"
