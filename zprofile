@@ -9,17 +9,50 @@ export PATH="${HOME}/bin:${PATH}"
 [ -f "${HOME}/.zlocal" ] && . "${HOME}/.zlocal"
 
 # Set options
-setopt appendhistory
-setopt autolist
-setopt completealiases
-setopt completeinword
+setopt append_history
+setopt auto_list
+setopt complete_aliases
+setopt complete_in_word
 setopt extended_glob
-setopt interactivecomments
+setopt interactive_comments
 setopt nobeep
 setopt nohup
 setopt notify
 setopt prompt_subst
+setopt share_history
 setopt vi
+
+### Completion Bits ###
+
+zstyle ':completion:*' completer _expand _complete _ignored _match _approximate _prefix
+zstyle ':completion:*' file-sort modification
+zstyle ':completion:*' format '- %d -'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' list-suffixes true
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
+zstyle ':completion:*' max-errors 1
+zstyle ':completion:*' menu select=3
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' verbose true
+zstyle ':completion:*' accept-exact yes
+zstyle ':completion:*' squeeze-slashes true
+
+## cd not select parent dir. 
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
+
+#set up vcs_info
+local FMT_BRANCH="[%{$fg[green]%}%s:%b%{$fg[red]%}%u%c%%{$reset_color%}]" # e.g. master¹²
+local FMT_ACTION="(%{$fg[cyan]%}%a%{$reset_color%})"   # e.g. (rebase-i)
+local FMT_PATH="%R%{$fg[yellow]%}/%S"              # e.g. ~/repo/subdir
+zstyle ':vcs_info:*' enable git svn hg bzr
+zstyle ':vcs_info:*:prompt:*' check-for-changes true
+zstyle ':vcs_info:*:prompt:*' unstagedstr '¹'  # display ¹ if there are unstaged changes
+zstyle ':vcs_info:*:prompt:*' stagedstr '²'    # display ² if there are staged changes
+zstyle ':vcs_info:*:prompt:*' actionformats "${FMT_BRANCH}${FMT_ACTION}"
+zstyle ':vcs_info:*:prompt:*' formats       "${FMT_BRANCH}"
+zstyle ':vcs_info:*:prompt:*' nvcsformats   "" ""
 
 # Auto-rehashing.  Try command completion, if fails, rehash
 function compctl_rehash { hash -r; reply=() }
@@ -64,33 +97,3 @@ zle -N zle-keymap-select
 
 zle -N self-insert url-quote-magic
 
-### Completion Bits ###
-
-zstyle ':completion:*' completer _expand _complete _ignored _match _approximate _prefix
-zstyle ':completion:*' file-sort modification
-zstyle ':completion:*' format '- %d -'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' list-suffixes true
-zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
-zstyle ':completion:*' max-errors 1
-zstyle ':completion:*' menu select=3
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' verbose true
-zstyle ':completion:*' accept-exact yes
-
-## cd not select parent dir. 
-zstyle ':completion:*:cd:*' ignore-parents parent pwd
-
-#set up vcs_info
-local FMT_BRANCH="[%{$fg[green]%}%s:%b%{$fg[red]%}%u%c%%{$reset_color%}]" # e.g. master¹²
-local FMT_ACTION="(%{$fg[cyan]%}%a%{$reset_color%})"   # e.g. (rebase-i)
-local FMT_PATH="%R%{$fg[yellow]%}/%S"              # e.g. ~/repo/subdir
-zstyle ':vcs_info:*' enable git svn hg bzr
-zstyle ':vcs_info:*:prompt:*' check-for-changes true
-zstyle ':vcs_info:*:prompt:*' unstagedstr '¹'  # display ¹ if there are unstaged changes
-zstyle ':vcs_info:*:prompt:*' stagedstr '²'    # display ² if there are staged changes
-zstyle ':vcs_info:*:prompt:*' actionformats "${FMT_BRANCH}${FMT_ACTION}"
-zstyle ':vcs_info:*:prompt:*' formats       "${FMT_BRANCH}"
-zstyle ':vcs_info:*:prompt:*' nvcsformats   "" ""
