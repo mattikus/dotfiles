@@ -27,7 +27,7 @@ function preexec() {
 }
 
 if [ -n "$SSH_TTY" ]; then
-  eval ucolor='%{$fg[blue]%}'
+  eval ucolor='%{$fg[magenta]%}'
 else
   eval ucolor='%{$fg[red]%}'
 fi
