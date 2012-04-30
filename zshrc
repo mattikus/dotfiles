@@ -26,10 +26,11 @@ function preexec() {
   esac
 }
 
-if [ -n "$SSH_TTY" ]; then
-  eval ucolor='%{$fg[magenta]%}'
+# Check to see if we're sshed into a box
+if [ -z "$SSH_TTY" ]; then
+  eval ucolor='%{$fg[cyan]%}'
 else
-  eval ucolor='%{$fg[red]%}'
+  eval ucolor='%{$fg[magenta]%}'
 fi
 
 export PROMPT='┌─[$ucolor%m%{${reset_color}%}][%{$fg[green]%}%40<..<%~%{${reset_color}%}][%{$fg[yellow]%}${VIMODE}%{$reset_color%}]${vcs_info_msg_0_}${virtual_env}
