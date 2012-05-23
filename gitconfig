@@ -1,45 +1,38 @@
 [core]
-	excludesfile = /Users/matt/.gitignore_global
-	autoclrf = input
-	safeclrf = true
+    excludesfile = /Users/matt/.gitignore_global
+    autoclrf = input
+    safeclrf = true
 
 [github]
-  user = mattikus
-  token = ${GITHUB_TOKEN}
+    user = mattikus
 
 [user]
-  email = matt@mattikus.com
-  name = Matt Kemp
+    email = matt@mattikus.com
+    name = Matt Kemp
 
 [color]
-  ui = auto
+    ui = auto
 
 [alias]
-  st = status -sb
-  ci = commit
-  co = checkout
-  amend = commit --amend -C HEAD
-  undo = reset --soft HEAD^
-  count = shortlog -sn
-  nst = !PAGER=cat git diff --name-status
-  graph = log --oneline --graph
+    st = status -sb
+    ci = commit
+    co = checkout
+    amend = commit --amend -C HEAD
+    undo = reset --soft HEAD^
+    count = shortlog -sn
+    nst = !PAGER=cat git diff --name-status
+    graph = log --oneline --graph
 
 [branch]
-  autosetupmerge = always
+    autosetupmerge = always
 
 [help]
-  autocorrect = 1
+    autocorrect = 1
 
 [push]
-  default = tracking
+    default = tracking
 
 [rerere]
-  enabled = true
-
-[mergetool "kdiff3"]
-  cmd =
-  keepTemporaries = false
-  trustExitCode = false
-  keepBackup = false
+    enabled = true
 
 # vim: set ft=gitconfig:
