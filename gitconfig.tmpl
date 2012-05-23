@@ -15,9 +15,12 @@
   ui = auto
 
 [alias]
-  st = status
+  st = status -sb
   ci = commit
   co = checkout
+  amend = commit --amend -C HEAD
+  undo = reset --soft HEAD^
+  count = shortlog -sn
   nst = !PAGER=cat git diff --name-status
   graph = log --oneline --graph
 
@@ -29,6 +32,9 @@
 
 [push]
   default = tracking
+
+[rerere]
+  enabled = true
 
 [mergetool "kdiff3"]
   cmd =
