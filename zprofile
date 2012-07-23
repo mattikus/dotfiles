@@ -1,6 +1,14 @@
 # Load up functions for use in my configs
-autoload -Uz colors compinit promptinit zmv vcs_info url-quote-magic
-colors; compinit; promptinit;
+autoload -Uz colors compinit zmv vcs_info url-quote-magic
+
+# Add extra completions to path if they exist
+if [ -d /usr/local/share/zsh-completions ]; then
+    fpath=(/usr/local/share/zsh-completions $fpath)
+elif [ -d $HOME/.zcompletions ]; then
+    fpath=($HOME/.zcompletions $fpath)
+fi
+
+colors; compinit;
 
 export PATH="${HOME}/bin:${PATH}"
 
@@ -24,39 +32,44 @@ setopt vi
 
 ### Completion Bits ###
 
-zstyle ':completion:*' completer _expand _complete _ignored _match _approximate _prefix
-zstyle ':completion:*' file-sort modification
-zstyle ':completion:*' format '- %d -'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' list-suffixes true
-zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
-zstyle ':completion:*' max-errors 1
-zstyle ':completion:*' menu select=3
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' verbose true
-zstyle ':completion:*' accept-exact yes
-zstyle ':completion:*' squeeze-slashes true
+#zstyle ':completion:*' completer _expand _complete _ignored _match _approximate _prefix
+#zstyle ':completion:*' file-sort modification
+#zstyle ':completion:*' format '- %d -'
+#zstyle ':completion:*' group-name ''
+#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+#zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+#zstyle ':completion:*' list-suffixes true
+#zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
+#zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX + $#SUFFIX) / 3 )) )'
+#zstyle ':completion:*' menu select=3
+#zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+#zstyle ':completion:*' verbose true
+#zstyle ':completion:*' accept-exact yes
+#zstyle ':completion:*' squeeze-slashes true
 
-## cd not select parent dir. 
-zstyle ':completion:*:cd:*' ignore-parents parent pwd
+### cd not select parent dir. 
+#zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
-#set up vcs_info
-local FMT_BRANCH="[%{$fg[green]%}%s:%b%{$fg[red]%}%u%c%%{$reset_color%}]" # e.g. master¹²
-local FMT_ACTION="(%{$fg[cyan]%}%a%{$reset_color%})"   # e.g. (rebase-i)
-local FMT_PATH="%R%{$fg[yellow]%}/%S"              # e.g. ~/repo/subdir
+## Complete man pages
+#zstyle ':completion:*:manuals'    separate-sections true
+#zstyle ':completion:*:manuals.*'  insert-sections   true
+#zstyle ':completion:*:man:*'      menu yes select
+
+## Complete process IDs
+#zstyle ':completion:*:*:kill:*' menu yes select
+#zstyle ':completion:*:kill:*'   force-list always
+
+# set up vcs_info for prompt
+local FMT_BRANCH="%F{green}%s:%b%f%u%c" # e.g. master¹²
+local FMT_ACTION="(%F{cyan}%a%f})"   # e.g. (rebase-i)
+local FMT_PATH="%R%F{yellow}/%S"              # e.g. ~/repo/subdir
 zstyle ':vcs_info:*' enable git svn hg bzr
 zstyle ':vcs_info:*:prompt:*' check-for-changes true
-zstyle ':vcs_info:*:prompt:*' unstagedstr '¹'  # display ¹ if there are unstaged changes
-zstyle ':vcs_info:*:prompt:*' stagedstr '²'    # display ² if there are staged changes
-zstyle ':vcs_info:*:prompt:*' actionformats "${FMT_BRANCH}${FMT_ACTION}"
-zstyle ':vcs_info:*:prompt:*' formats       "${FMT_BRANCH}"
+zstyle ':vcs_info:*:prompt:*' unstagedstr '%F{red}*%f'  # display ¹ if there are unstaged changes
+zstyle ':vcs_info:*:prompt:*' stagedstr '%F{green}*%f'    # display ² if there are staged changes
+zstyle ':vcs_info:*:prompt:*' actionformats "${FMT_BRANCH}${FMT_ACTION} "
+zstyle ':vcs_info:*:prompt:*' formats       "${FMT_BRANCH} "
 zstyle ':vcs_info:*:prompt:*' nvcsformats   "" ""
-
-# Auto-rehashing.  Try command completion, if fails, rehash
-function compctl_rehash { hash -r; reply=() }
-compctl -C -c + -K compctl_rehash + -c
 
 # Utility functions for downloading
 function wz() { 
@@ -88,6 +101,7 @@ function wJ() {
 # If I am using vi keys, I want to know what mode I'm currently using.
 # zle-keymap-select is executed every time KEYMAP changes.
 # From http://zshwiki.org/home/examples/zlewidgets
+VIMODE="i"
 function zle-line-init zle-keymap-select {
     VIMODE="${${KEYMAP/vicmd/c}/(main|viins)/i}"
     zle reset-prompt

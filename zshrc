@@ -11,7 +11,7 @@ function precmd() {
       ;;
   esac
   if [ -n "$VIRTUAL_ENV" ]; then
-    virtual_env=[%{$fg[blue]%}$(basename "$VIRTUAL_ENV")%{$reset_color%}]
+    virtual_env=[%F{blue}$(basename "$VIRTUAL_ENV")%f]
   else
     unset virtual_env
   fi
@@ -28,10 +28,10 @@ function preexec() {
 
 # Check to see if we're sshed into a box
 if [ -z "$SSH_TTY" ]; then
-  eval ucolor='%{$fg[cyan]%}'
+  eval ucolor='%F{cyan}'
 else
-  eval ucolor='%{$fg[magenta]%}'
+  eval ucolor='%F{magenta}'
 fi
 
-export PROMPT='┌─[$ucolor%m%{${reset_color}%}][%{$fg[green]%}%40<..<%~%{${reset_color}%}][%{$fg[yellow]%}${VIMODE}%{$reset_color%}]${vcs_info_msg_0_}${virtual_env}
-└─> '
+export PROMPT='[$ucolor%m%f %F{green}%40<..<%~%f][%F{yellow}${VIMODE}%f][ '
+export RPROMPT='%f${vcs_info_msg_0_}${virtual_env}] %f%F{green}%D{%H:%M}%f'
