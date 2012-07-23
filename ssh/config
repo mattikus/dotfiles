@@ -1,91 +1,93 @@
 ### Defaults ###
 host *
   ControlPath ~/.ssh/master-%r@%h:%p
-  ControlMaster auto
-  forwardAgent yes
+  ForwardAgent yes
 ################
 
 ###vps###
 host vps
-  hostname mattikus.com
-  user matt
-  port 64000
+  HostName mattikus.com
+  User matt
+  Port 64000
   ControlMaster auto
 
 host vps-proxy
-  hostname mattikus.com
-  user matt
-  port 64000
+  HostName mattikus.com
+  User matt
+  Port 64000
   DynamicForward 8080
 ################
 
 ###Home Machines###
 host balthazar
-  user matt
+  User matt
   forwardX11trusted yes
   PermitLocalCommand yes
 
 host home
-   user matt
-   hostname meepers.dyndns.com
-   port 64000
+   User matt
+   HostName mattik.us
+   Port 64000
 ##################
 
 ##ANL##
 host *.anl.gov
-  user mkemp
+  User mkemp
 
 host cetus veas
-  host %h.alcf.anl.gov
-  user mkemp
+  HostName %h.alcf.anl.gov
+  User mkemp
 
 host cata
-  hostname catapult.pub.alcf.anl.gov
-  user mkemp
+  HostName catapult.pub.alcf.anl.gov
+  ControlMaster auto
+  DynamicForward 8080
+  User mkemp
 
 host treb
-  hostname trebuchet.pub.alcf.anl.gov
-  user mkemp
+  HostName trebuchet.pub.alcf.anl.gov
+  ControlMaster auto
+  DynamicForward 8080
+  User mkemp
 
 host login?.mcs login?.mcs.anl.gov
-  user mkemp
+  User mkemp
 
 host harvey harvey.surveyor harvey.surveyor.alcf.anl.gov
-  hostname harvey.surveyor.alcf.anl.gov
-  user mkemp
+  HostName harvey.surveyor.alcf.anl.gov
+  User mkemp
 
 host mgt1 mgt1.ether mgt1.ether.alcf.anl.gov
-  hostname mgt1.ether.alcf.anl.gov
-  user mkemp
+  HostName mgt1.ether.alcf.anl.gov
+  DynamicForward 8080
+  ControlMaster auto
+  User mkemp
 
 host mgt2 mgt2.ether mgt2.ether.alcf.anl.gov
-  hostname mgt2.ether.alcf.anl.gov
-  user mkemp
+  HostName mgt2.ether.alcf.anl.gov
+  User mkemp
 
 host namby namby.mcs namby.mcs.anl.gov
-  hostname namby.mcs.anl.gov
-  user mkemp
+  HostName namby.mcs.anl.gov
+  User mkemp
 
 host status
-  user mkemp
+  User mkemp
   ProxyCommand ssh -A namby netcat status.alcf.anl.gov %p
 
-host ikon
-  user mkemp
-  ProxyCommand ssh -A namby netcat ikon.mcs.anl.gov %p
-  #LocalForward localhost:3306 ikon.mcs.anl.gov:3306
-
 host login8.surveyor login8.surveyor.alcf.anl.gov
-  hostname login8.surveyor.alcf.anl.gov
-  user mkemp
+  HostName login8.surveyor.alcf.anl.gov
+  User mkemp
 
 host login10.intrepid login10.intrepid.alcf.anl.gov
-  hostname login10.intrepid.alcf.anl.gov
-  user mkemp
+  HostName login10.intrepid.alcf.anl.gov
+  User mkemp
 ######
 
 ### no.de ###
 host foobar foobar.no.de
-  hostname foobar.no.de
-  user node
+  HostName foobar.no.de
+  User node
 #############
+
+# vim: set ft=sshconfig:
