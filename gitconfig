@@ -22,6 +22,8 @@
     count = shortlog -sn
     nst = !PAGER=cat git diff --name-status
     graph = log --oneline --graph
+    sr = svn rebase
+    sd = svn dcommit
 
 [branch]
     autosetupmerge = always
