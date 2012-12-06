@@ -27,6 +27,7 @@
 
 [branch]
     autosetupmerge = always
+    autosetuprebase = always
 
 [help]
     autocorrect = 1
