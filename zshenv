@@ -8,6 +8,7 @@ export HISTFILE="${HOME}/.zsh_history"
 export HISTSIZE=30000
 export SAVEHIST=30000
 export HIST_IGNORE_DUPS=true
+export HIST_IGNORE_SPACE=true
 export HIST_FIND_NO_DUPS=true
 
 # Set up dircolors
