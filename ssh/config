@@ -2,7 +2,6 @@
 host *
   ControlPath ~/.ssh/master-%r@%h:%p
   ForwardAgent yes
-  LogLevel Error
 ################
 
 ###vps###
