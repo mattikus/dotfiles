@@ -16,7 +16,7 @@ host vps-proxy
   HostName mattikus.com
   User matt
   Port 64000
-  DynamicForward 8080
+  DynamicForward 9090
 ################
 
 ###Home Machines###
@@ -42,13 +42,11 @@ host cetus veas
 host cata
   HostName catapult.pub.alcf.anl.gov
   ControlMaster auto
-  DynamicForward 8080
   User mkemp
 
 host treb
   HostName trebuchet.pub.alcf.anl.gov
   ControlMaster auto
-  DynamicForward 8080
   User mkemp
 
 host login?.mcs login?.mcs.anl.gov
@@ -60,7 +58,6 @@ host harvey harvey.surveyor harvey.surveyor.alcf.anl.gov
 
 host mgt1 mgt1.ether mgt1.ether.alcf.anl.gov
   HostName mgt1.ether.alcf.anl.gov
-  DynamicForward 8080
   ControlMaster auto
   User mkemp
 
