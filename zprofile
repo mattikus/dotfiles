@@ -1,7 +1,7 @@
 # Add extra completions to path if they exist
 [[ -d /usr/local/share/zsh-completions ]] && fpath=(/usr/local/share/zsh-completions $fpath)
-[[ -d ~/.zcompletions ]] && fpath=(~/.zcompletions $fpath)
-[[ -d ~/.zfunc ]] && fpath=(~/.zfunc $fpath)
+[[ -d "${HOME}/.zcompletions" ]] && fpath=("${HOME}/.zcompletions" $fpath)
+[[ -d "${HOME}/.zfunc" ]] && fpath=("${HOME}/.zfunc" $fpath)
 
 # Load up functions for use in my configs
 autoload -Uz colors compinit zmv vcs_info url-quote-magic
@@ -9,10 +9,6 @@ colors; compinit;
 
 # Add my personal bin to the front
 path=(~/bin $path)
-
-# Source my local configs
-[ -f "~/.zshrc.local" ] && . "~/.zshrc.local" # deprecated
-[ -f "~/.zlocal" ] && . "~/.zlocal"
 
 # Set options
 setopt append_history
@@ -109,3 +105,5 @@ zle -N zle-keymap-select
 
 zle -N self-insert url-quote-magic
 
+# Source my local configs
+[[ -f "${HOME}/.zlocal" ]] &&  . "${HOME}/.zlocal"
