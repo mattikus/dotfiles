@@ -1,52 +1,11 @@
 # Add extra completions to path if they exist
 [[ -d /usr/local/share/zsh-completions ]] && fpath=(/usr/local/share/zsh-completions $fpath)
-[[ -d "${HOME}/.zcompletions" ]] && fpath=("${HOME}/.zcompletions" $fpath)
-[[ -d "${HOME}/.zfunc" ]] && fpath=("${HOME}/.zfunc" $fpath)
+[[ -d ~/.zcompletions ]] && fpath=(~/.zcompletions $fpath)
+[[ -d ~/.zfunc ]] && fpath=(~/.zfunc $fpath)
 
 # Load up functions for use in my configs
 autoload -Uz colors compinit zmv vcs_info url-quote-magic
 colors; compinit;
-
-# ENV VARS
-export EDITOR="vim"
-export VISUAL="vim -f"
-export LC_ALL="$LANG"
-export PYTHONSTARTUP="${HOME}/.pythonrc"
-export DOTFILES="${HOME}/.dotfiles"
-export INPUTRC="${HOME}/.inputrc"
-export HISTFILE="${HOME}/.zsh_history"
-export HISTSIZE=30000
-export SAVEHIST=30000
-export HIST_IGNORE_DUPS=true
-export HIST_IGNORE_SPACE=true
-export HIST_FIND_NO_DUPS=true
-
-# If we have a local struture, use it.
-if [[ -d "${HOME}/.local" ]]; then
-    export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
-    export LD_RUN_PATH="$HOME/.local/lib:$LD_RUN_PATH"
-    export PKG_CONFIG_PATH="$HOME/.local/lib/pkgconfig:$PKG_CONFIG_PATH"
-
-    export LDFLAGS="-L$HOME/.local/lib -L/lib64 -L/usr/lib64 $LDFLAGS"
-    export CFLAGS="-I$HOME/.local/include -I/include -I/usr/include $CFLAGS"
-    export CPPFLAGS="$CFLAGS"
-
-    export PATH="$HOME/.local/bin:$PATH"
-    export MANPATH="$HOME/.local/man:$MANPATH"
-fi
-
-#Set up virtualenvwraper
-if which virtualenvwrapper.sh &> /dev/null; then
-  export WORKON_HOME=${HOME}/.virtualenvs
-  export VIRTUAL_ENV_DISABLE_PROMPT=true
-  export VIRTUALENV_DISTRIBUTE=true
-  export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
-  [[ -d $WORKON_HOME ]] || mkdir -p $WORKON_HOME
-  source $(which virtualenvwrapper.sh)
-fi
-
-# Add my personal bin to the front
-path=(~/bin $path)
 
 # Set options
 setopt append_history
@@ -140,6 +99,3 @@ function wJ() {
     curl "$1" | tar xJ
   fi
 }
-
-# Source my local configs
-[[ -f "${HOME}/.zlocal" ]] && . "${HOME}/.zlocal"
