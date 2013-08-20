@@ -39,3 +39,5 @@
     enabled = true
 
 # vim: set ft=gitconfig:
+[merge]
+	conflictstyle = diff3
