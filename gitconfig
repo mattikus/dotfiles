@@ -7,7 +7,7 @@
     user = mattikus
 
 [user]
-    email = matt@mattikus.com
+    email = mkemp@alcf.anl.gov
     name = Matt Kemp
 
 [color]
@@ -27,6 +27,7 @@
 
 [branch]
     autosetupmerge = always
+    autosetuprebase = always
 
 [help]
     autocorrect = 1
