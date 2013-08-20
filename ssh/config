@@ -87,4 +87,11 @@ host foobar foobar.no.de
   User node
 #############
 
+Host *+*
+  ProxyCommand ssh $(echo %h | sed 's/+[^+]*$//;s/\([^+%%]*\)%%\([^+]*\)$/\2 -l \1/;s/:/ -p /') PATH=.:\$PATH nc -w10 $(echo %h | sed 's/^.*+//;/:/!s/$/ %p/;s/:/ /')
+
+host swerve swerve.fst swerve.fst.alcf.anl.gov
+  hostname swerve.fst.alcf.anl.gov
+  user mkemp
+
 # vim: set ft=sshconfig:
