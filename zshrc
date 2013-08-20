@@ -99,3 +99,6 @@ function wJ() {
     curl "$1" | tar xJ
   fi
 }
+
+# Source my local configs
+[[ -f ~/.zlocal ]] && . ~/.zlocal
