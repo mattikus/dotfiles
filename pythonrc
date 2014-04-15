@@ -1,10 +1,4 @@
 #!/usr/bin/env python
-try:
-  import builtins
-  builtins_ = builtins
-except ImportError:
-  import __builtin__
-  builtins_ = __builtin__
 import sys, os, string, time
 from pprint import pprint
 
@@ -20,52 +14,3 @@ else:
         readline.parse_and_bind("bind ^I rl_complete")
     else:
         readline.parse_and_bind("tab: complete")
-
-h = [None]
-
-class Prompt:
-    def __init__(self, str='h[%d] >>> '):
-        self.str = str;
-
-    def __str__(self):
-        try:
-            if _ not in [h[-1], None, h]: h.append(_);
-        except NameError:
-           pass
-        return self.str % len(h);
-
-    def __radd__(self, other):
-        return str(other) + str(self)
-
-
-terms = [ 'xterm-color',
-          'xterm-256color',
-          'xterm',
-          'rxvt',
-          'rxvt-color',
-          'rxvt-unicode',
-          'rxvt-256color',
-          'screen-256color',
-          'vt100', ]
-
-if os.environ.get('TERM') in terms:
-    sys.ps1 = Prompt('\001\033[1;32m\002h[\001\033[1;36m\002%d\001\033[1;32m\002] >>> \001\033[0m\002')
-    sys.ps2 = '\001\033[1;36m\002........ \001\033[0m\002'
-else:
-    sys.ps1 = Prompt()
-    sys.ps2 = '........ '
-
-# Get the see keyword for better viewing of modules and objects
-try:
-    from see import see
-except ImportError:
-    pass
-
-def displayhook(value):
-    if value is not None:
-        builtins_._ = value
-        pprint(value)
-sys.displayhook = displayhook
-
-# Cleanup
-del(terms)
