@@ -14,16 +14,16 @@ export HIST_FIND_NO_DUPS=true
 
 # If we have a local struture, use it.
 if [[ -d ~/.local ]]; then
-    export LD_LIBRARY_PATH="~/.local/lib:$LD_LIBRARY_PATH"
-    export LD_RUN_PATH="~/.local/lib:$LD_RUN_PATH"
-    export PKG_CONFIG_PATH="~/.local/lib/pkgconfig:$PKG_CONFIG_PATH"
+    export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
+    export LD_RUN_PATH="$HOME/.local/lib:$LD_RUN_PATH"
+    export PKG_CONFIG_PATH="$HOME/.local/lib/pkgconfig:$PKG_CONFIG_PATH"
 
-    export LDFLAGS="-L~/.local/lib -L/lib64 -L/usr/lib64 $LDFLAGS"
-    export CFLAGS="-I~/.local/include -I/include -I/usr/include $CFLAGS"
+    export LDFLAGS="-L$HOME/.local/lib -L/lib64 -L/usr/lib64 $LDFLAGS"
+    export CFLAGS="-I$HOME/.local/include -I/include -I/usr/include $CFLAGS"
     export CPPFLAGS="$CFLAGS"
 
     path=(~/.local/bin $path)
-    export MANPATH="~/.local/man:$MANPATH"
+    export MANPATH="$HOME/.local/man:$MANPATH"
 fi
 
 #Set up virtualenvwraper
