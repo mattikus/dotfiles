@@ -41,6 +41,7 @@ host cetus veas
 host cata
   HostName catapult.pub.alcf.anl.gov
   ControlMaster auto
+  ForwardX11Trusted yes
   User mkemp
 
 host treb
