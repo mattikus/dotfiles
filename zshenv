@@ -35,9 +35,5 @@ if which virtualenvwrapper.sh &> /dev/null; then
   . $(which virtualenvwrapper.sh)
 fi
 
-
-# Source my local configs
-[[ -f ~/.zlocal ]] && . ~/.zlocal
-
 # Add my personal bin to the front
 path=(~/bin $path)
