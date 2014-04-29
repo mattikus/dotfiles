@@ -26,14 +26,14 @@ if [[ -d ~/.local ]]; then
     export MANPATH="$HOME/.local/man:$MANPATH"
 fi
 
+# Add my personal bin to the front
+path=(~/bin $path)
+
 #Set up virtualenvwraper
-if which virtualenvwrapper.sh &> /dev/null; then
+if which virtualenvwrapper_lazy.sh &> /dev/null; then
   export WORKON_HOME=~/.virtualenvs
   [[ -d $WORKON_HOME ]] || mkdir -p $WORKON_HOME
   export VIRTUAL_ENV_DISABLE_PROMPT=true
-  export VIRTUALENV_DISTRIBUTE=true
-  . $(which virtualenvwrapper.sh)
+  . $(which virtualenvwrapper_lazy.sh)
 fi
 
-# Add my personal bin to the front
-path=(~/bin $path)
