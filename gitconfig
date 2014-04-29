@@ -13,7 +13,7 @@
     name = Matt Kemp
 
 [color]
-    ui = auto
+    ui = true
 
 [alias]
     st = status -s
