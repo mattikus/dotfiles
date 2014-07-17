@@ -1,5 +1,6 @@
+# vim: set ft=gitconfig:
 [core]
-    excludesfile = /Users/matt/.gitignore_global
+    excludesfile = ~/.gitignore_global
     autoclrf = input
     safeclrf = true
 
@@ -7,14 +8,15 @@
     user = mattikus
 
 [user]
-    email = mkemp@alcf.anl.gov
+    # email can be overridden with $EMAIL envvar
+    email = matt@mattikus.com
     name = Matt Kemp
 
 [color]
-    ui = auto
+    ui = true
 
 [alias]
-    st = status -sb
+    st = status -s
     ci = commit
     co = checkout
     amend = commit --amend -C HEAD
@@ -24,6 +26,9 @@
     graph = log --oneline --graph
     sr = svn rebase
     sd = svn dcommit
+    tags = tag -l
+    branches = branch -a
+    remotes = remote -v
 
 [branch]
     autosetupmerge = always
@@ -38,4 +43,5 @@
 [rerere]
     enabled = true
 
-# vim: set ft=gitconfig:
+[merge]
+	conflictstyle = diff3
