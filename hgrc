@@ -2,31 +2,3 @@
 username = Matt Kemp <matt@mattikus.com>
 ignore=~/.hgignore
 editor=vim
-
-[extensions]
-color=
-extdiff=
-mq=
-convert=
-rebase=
-zeroconf=
-bookmarks=
-convert=
-
-[extdiff]
-cmd.kdiff3 =
-cmd.opendiff = opendiff
-
-[merge-tools]
-filemerge.executable = opendiff-w
-filemerge.args = $local $other -ancestor $base -merge $output
-filemerge.gui = true
-meld.args = $base $local $other
-meld.gui = true
-kdiff3.args = $base $local $other -o $output
-
-[trusted]
-users = matt, www-data, http
-groups = hg, http
-
-[defaults]
