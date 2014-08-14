@@ -4,7 +4,7 @@
 [[ -d ~/.zfunc ]] && fpath=(~/.zfunc $fpath)
 
 # Load up functions for use in my configs
-autoload -Uz colors compinit zmv vcs_info url-quote-magic
+autoload -Uz colors compinit zmv vcs_info url-quote-magic edit-command-line
 colors; compinit;
 
 # Set options
@@ -71,7 +71,8 @@ function precmd() {
 }
 
 ### ZLE Bits ###
-zle -N self-insert url-quote-magic
+zle -N self-insert url-quote-magic edit-command-line
+bindkey -M vicmd v edit-command-line
 
 export PROMPT='%F{blue}%D{%H:%M}%f $ucolor%m%f %F{green}%40<..<%~%f${vcs_stuff}${virtual_env} %(?,%F{green},%F{red})%%%f '
 
