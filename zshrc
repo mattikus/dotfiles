@@ -71,7 +71,8 @@ function precmd() {
 }
 
 ### ZLE Bits ###
-zle -N self-insert url-quote-magic edit-command-line
+zle -N self-insert url-quote-magic
+zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 export PROMPT='%F{blue}%D{%H:%M}%f $ucolor%m%f %F{green}%40<..<%~%f${vcs_stuff}${virtual_env} %(?,%F{green},%F{red})%%%f '
