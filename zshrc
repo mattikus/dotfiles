@@ -36,9 +36,6 @@ case "$(uname -s)" in
   'Linux')
     alias ls='ls --color=always -Fh'
     ;;
-  'NetBSD')
-    [[ which -s colorls ]] && alias ls='colorls -GFh'
-    ;;
 esac
 
 # set up vcs_info for prompt

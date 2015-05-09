@@ -14,16 +14,23 @@ export HIST_FIND_NO_DUPS=true
 
 # If we have a local struture, use it.
 if [[ -d ~/.local ]]; then
-    export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
-    export LD_RUN_PATH="$HOME/.local/lib:$LD_RUN_PATH"
-    export PKG_CONFIG_PATH="$HOME/.local/lib/pkgconfig:$PKG_CONFIG_PATH"
+    if [[ -d ~/.local/lib ]]; then
+        export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
+        export LD_RUN_PATH="$HOME/.local/lib:$LD_RUN_PATH"
+        export PKG_CONFIG_PATH="$HOME/.local/lib/pkgconfig:$PKG_CONFIG_PATH"
 
-    export LDFLAGS="-L$HOME/.local/lib -L/lib64 -L/usr/lib64 $LDFLAGS"
-    export CFLAGS="-I$HOME/.local/include -I/include -I/usr/include $CFLAGS"
-    export CPPFLAGS="$CFLAGS"
+        export LDFLAGS="-L$HOME/.local/lib $LDFLAGS"
+        export CFLAGS="-I$HOME/.local/include $CFLAGS"
+        export CPPFLAGS="$CFLAGS"
+    fi
 
-    path=(~/.local/bin $path)
-    export MANPATH="$HOME/.local/man:$MANPATH"
+    if [[ -d ~/.local/man ]]; then
+        export MANPATH="$HOME/.local/man:$MANPATH"
+    fi
+
+    if [[ -d ~/.local/bin ]]; then
+        path=(~/.local/bin $path)
+    fi
 fi
 
 # Add my personal bin to the front
