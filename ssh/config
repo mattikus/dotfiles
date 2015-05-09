@@ -1,7 +1,6 @@
 ### Defaults ###
 host *
   ControlPath ~/.ssh/master-%r@%h:%p
-  ForwardAgent yes
 ################
 
 ###vps###
@@ -10,32 +9,27 @@ host vps
   User matt
   Port 64000
   ControlMaster auto
-
-host vps-proxy
-  HostName mattikus.com
-  User matt
-  Port 64000
-  DynamicForward 9090
+  ForwardAgent yes
 ################
 
 ###Home Machines###
-host balthazar
+host balthazar bal
   User matt
   forwardX11trusted yes
   PermitLocalCommand yes
+  ControlMaster auto
+  ForwardAgent yes
 
-host home
-   User matt
-   HostName mattik.us
-   Port 64000
+host home mattik.us
+  User matt
+  HostName mattik.us
+  Port 64000
+  ControlMaster auto
+  ForwardAgent yes
 ##################
 
 ##ANL##
 host *.anl.gov
-  User mkemp
-
-host cetus veas
-  HostName %h.alcf.anl.gov
   User mkemp
 
 host cata
@@ -43,56 +37,30 @@ host cata
   ControlMaster auto
   ForwardX11Trusted yes
   User mkemp
+  ForwardAgent yes
 
 host treb
   HostName trebuchet.pub.alcf.anl.gov
   ControlMaster auto
   User mkemp
+  ForwardAgent yes
 
-host login?.mcs login?.mcs.anl.gov
+host login.mcs login?.mcs login?.mcs.anl.gov
+  hostname login.mcs.anl.gov
   User mkemp
+  ForwardAgent yes
 
-host harvey harvey.surveyor harvey.surveyor.alcf.anl.gov
-  HostName harvey.surveyor.alcf.anl.gov
+host gitlab
+  User git
+  ProxyCommand ssh -A treb nc swerve %p
+
+host jlse
   User mkemp
-
-host mgt1 mgt1.ether mgt1.ether.alcf.anl.gov
-  HostName mgt1.ether.alcf.anl.gov
   ControlMaster auto
-  User mkemp
+  HostName ftlogin1.pub.jlse.anl.gov
 
-host mgt2 mgt2.ether mgt2.ether.alcf.anl.gov
-  HostName mgt2.ether.alcf.anl.gov
-  User mkemp
-
-host namby namby.mcs namby.mcs.anl.gov
-  HostName namby.mcs.anl.gov
-  User mkemp
-
-host status
-  User mkemp
-  ProxyCommand ssh -A namby netcat status.alcf.anl.gov %p
-
-host login8.surveyor login8.surveyor.alcf.anl.gov
-  HostName login8.surveyor.alcf.anl.gov
-  User mkemp
-
-host login10.intrepid login10.intrepid.alcf.anl.gov
-  HostName login10.intrepid.alcf.anl.gov
-  User mkemp
-######
-
-### no.de ###
-host foobar foobar.no.de
-  HostName foobar.no.de
-  User node
-#############
-
-Host *+*
-  ProxyCommand ssh $(echo %h | sed 's/+[^+]*$//;s/\([^+%%]*\)%%\([^+]*\)$/\2 -l \1/;s/:/ -p /') PATH=.:\$PATH nc -w10 $(echo %h | sed 's/^.*+//;/:/!s/$/ %p/;s/:/ /')
-
-host swerve swerve.fst swerve.fst.alcf.anl.gov
-  hostname swerve.fst.alcf.anl.gov
-  user mkemp
+host albatross ftsn1
+    user mkemp
+    ProxyCommand ssh -A jlse nc %h %p
 
 # vim: set ft=sshconfig:
