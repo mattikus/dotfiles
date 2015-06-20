@@ -4,11 +4,7 @@
     autoclrf = input
     safeclrf = true
 
-[github]
-    user = mattikus
-
 [user]
-    # email can be overridden with $EMAIL envvar
     email = matt@mattikus.com
     name = Matt Kemp
 
@@ -31,17 +27,17 @@
     remotes = remote -v
 
 [branch]
-    autosetupmerge = always
+    autosetupmerge = true
     autosetuprebase = always
+
+[fetch]
+    prune = true
 
 [help]
     autocorrect = 1
 
 [push]
-    default = simple
+    default = upstream
 
 [rerere]
     enabled = true
-
-[merge]
-	conflictstyle = diff3
