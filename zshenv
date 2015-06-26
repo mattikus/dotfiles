@@ -1,7 +1,7 @@
 # ENV VARS
 export EDITOR=vim
 export VISUAL="vim -f"
-export LC_ALL=$LANG
+export LANG=en_US.UTF-8
 export PYTHONSTARTUP=~/.pythonrc
 export DOTFILES=~/.dotfiles
 export INPUTRC=~/.inputrc
