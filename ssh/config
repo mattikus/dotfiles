@@ -1,6 +1,7 @@
 ### Defaults ###
 host *
   ControlPath ~/.ssh/master-%r@%h:%p
+  ForwardAgent yes
 ################
 
 ###vps###
@@ -50,7 +51,7 @@ host login.mcs login?.mcs login?.mcs.anl.gov
   User mkemp
   ForwardAgent yes
 
-host gitlab
+host gitlab_proxy
   User git
   ProxyCommand ssh -A treb nc swerve %p
 
