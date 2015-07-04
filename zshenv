@@ -44,3 +44,6 @@ if which virtualenvwrapper_lazy.sh &> /dev/null; then
   . $(which virtualenvwrapper_lazy.sh)
 fi
 
+if [[ -f ~/.dircolors ]] && which dircolors &>/dev/null; then
+  eval $(dircolors ~/.dircolors)
+fi
