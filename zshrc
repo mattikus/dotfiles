@@ -79,7 +79,7 @@ function wz() {
   if $(which wget &>/dev/null); then
     wget "$1" -O- | tar xz
   elif $(which curl &>/dev/null); then
-    curl "$1" | tar xz
+    curl -L "$1" | tar xz
   fi
 }
 
@@ -87,7 +87,7 @@ function wj() {
   if $(which wget &>/dev/null); then
     wget "$1" -O- | tar xj
   elif $(which curl &>/dev/null); then
-    curl "$1" | tar xj
+    curl -L "$1" | tar xj
   fi
 }
 
@@ -95,7 +95,7 @@ function wJ() {
   if $(which wget &>/dev/null); then
     wget "$1" -O- | tar xJ
   elif $(which curl &>/dev/null); then
-    curl "$1" | tar xJ
+    curl -L "$1" | tar xJ
   fi
 }
 
