@@ -1,3 +1,5 @@
 " Override Color
-colorscheme base16-ocean
-au! BufWinLeave * colorscheme base16-ocean
+silent! colorscheme base16-ocean
+au! BufWinLeave * silent! colorscheme base16-ocean
+au! FileType git silent! colorscheme base16-ocean
+au! FileType diff silent! colorscheme base16-ocean
