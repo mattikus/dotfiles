@@ -1,0 +1,3 @@
+" Override Color
+colorscheme base16-ocean
+au! BufWinLeave * colorscheme base16-ocean
