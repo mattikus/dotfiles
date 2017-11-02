@@ -3,3 +3,5 @@ silent! colorscheme base16-ocean
 au! BufWinLeave *
 au! FileType git
 au! FileType diff
+
+let g:puppet_align_hashes = 1
