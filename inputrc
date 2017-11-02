@@ -1,6 +1,4 @@
 TAB: complete
 set bell-style visible
 set completion-ignore-case on
-set show-all-if-ambiguous off
-set editing-mode vi
-set keymap vi-insert
+set show-all-if-ambiguous on
