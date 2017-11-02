@@ -1,67 +1,27 @@
-### Defaults ###
 host *
   ControlPath ~/.ssh/master-%r@%h:%p
   ForwardAgent yes
-################
 
-###vps###
 host vps
   HostName mattikus.com
-  User matt
-  Port 64000
-  ControlMaster auto
-  ForwardAgent yes
-################
 
-###Home Machines###
-host balthazar bal
-  User matt
-  forwardX11trusted yes
-  PermitLocalCommand yes
+host mattikus.com fizzbitch.lol
+  User mattikus
   ControlMaster auto
   ForwardAgent yes
 
-host home mattik.us
-  User matt
-  HostName mattik.us
-  Port 64000
-  ControlMaster auto
-  ForwardAgent yes
-##################
+host home
+  hostname mattik.us
 
-##ANL##
-host *.anl.gov
-  User mkemp
-
-host cata
-  HostName catapult.pub.alcf.anl.gov
+host melchior balthazar mattik.us *.mattik.us
+  hostname %h
+  User mattikus
   ControlMaster auto
-  ForwardX11Trusted yes
-  User mkemp
+  ControlPersist 15m
   ForwardAgent yes
 
-host treb
-  HostName trebuchet.pub.alcf.anl.gov
-  ControlMaster auto
-  User mkemp
-  ForwardAgent yes
-
-host login.mcs login?.mcs login?.mcs.anl.gov
-  hostname login.mcs.anl.gov
-  User mkemp
-  ForwardAgent yes
-
-host gitlab_proxy
-  User git
-  ProxyCommand ssh -A treb nc swerve %p
-
-host jlse
-  User mkemp
-  ControlMaster auto
-  HostName ftlogin1.pub.jlse.anl.gov
-
-host albatross ftsn1
-    user mkemp
-    ProxyCommand ssh -A jlse nc %h %p
+host ap1 ap1.mattik.us
+  user admin
+  forwardagent yes
 
 # vim: set ft=sshconfig:
