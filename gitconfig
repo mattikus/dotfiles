@@ -1,4 +1,4 @@
-# vim: set ft=gitconfig:
+# vim: set noet ts=4 sw=4 ft=gitconfig:
 [core]
 	excludesfile = ~/.gitignore_global
 	autoclrf = input
@@ -13,15 +13,11 @@
 
 [alias]
 	st = status -s
-	ci = commit
-	co = checkout
 	amend = commit --amend -C HEAD
 	undo = reset --soft HEAD^
 	count = shortlog -sn
 	nst = !PAGER=cat git diff --name-status
 	graph = log --oneline --graph
-	sr = svn rebase
-	sd = svn dcommit
 	tags = tag -l
 	branches = branch -a
 	remotes = remote -v
