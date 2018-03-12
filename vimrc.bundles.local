@@ -1,2 +1,3 @@
 Plug 'chriskempson/base16-vim'
 Plug 'pearofducks/ansible-vim'
+Plug 'arcticicestudio/nord-vim'
