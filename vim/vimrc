@@ -2,8 +2,9 @@
 set nocompatible
 
 " Set space for the leader. Done as early as possible in the vimrc.
-noremap <Space> <nop>
-let mapleader = "\<Space>"
+nnoremap <Space> <nop>
+let mapleader = " "
+let maplocalleader = " "
 
 " Source host-specific initialization first if necessary
 " i.e. ~/.vim/$HOSTNAME.vim
@@ -28,9 +29,6 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 
-" Show function signatures in command line
-Plug 'Shougo/echodoc.vim'
-
 Plug 'arcticicestudio/nord-vim'
 
 if has('nvim')
@@ -52,6 +50,9 @@ if has('nvim')
     Plug 'ncm2/float-preview.nvim'
   endif
 
+  " Show function signatures in command line
+  Plug 'Shougo/echodoc.vim'
+
   " Snippetz
   Plug 'SirVer/ultisnips'
   Plug 'ncm2/ncm2-ultisnips'
@@ -67,6 +68,12 @@ call plug#end()
 
 " Sensible paths for backup data
 if !has('nvim')
+  if !filereadable($HOME . "/.cache/vim")
+    silent! call mkdir($HOME . "/.cache/vim/undo", "p")
+    silent! call mkdir($HOME . "/.cache/vim/swap", "p")
+    silent! call mkdir($HOME . "/.cache/vim/backup", "p")
+  endif
+
   set undodir=~/.cache/vim/undo
   set directory=~/.cache/vim/swap
   set backupdir=~/.cache/vim/backup
@@ -139,11 +146,12 @@ command! W w
 
 " NERDTree
 let NERDTreeIgnore = ['\.pyc$', '\.o$', '\.class$', '\.lo$']
+let g:NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeMinimalUI = 1
 let g:netrw_banner = 0
 
 " Nord colorscheme
 set background=dark
-let g:nord_comment_brightness = 5
 let g:nord_italic = 1
 let g:nord_underline = 1
 let g:nord_uniform_diff_background = 1
