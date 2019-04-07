@@ -66,12 +66,27 @@ alias grep='grep --color=auto'
 # Set up local paths
 path=(~/bin ~/.local/bin ~/go/bin $path)
 
-[[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]] && . /usr/share/doc/fzf/examples/key-bindings.zsh
-[[ -f /usr/share/zsh/vendor-completions/_fzf ]] && . /usr/share/zsh/vendor-completions/_fzf
+# FZF up in this house
+[[ -d ~/.fzf/bin ]] && path=(~/.fzf/bin $path)
+
+if [ $commands[fzf] ]; then
+  if [[ -d ~/.fzf/shell ]]; then
+    . ~/.fzf/shell/completion.zsh
+    . ~/.fzf/shell/key-bindings.zsh
+  else
+    [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]] && . /usr/share/doc/fzf/examples/key-bindings.zsh
+    [[ -f /usr/share/zsh/vendor-completions/_fzf ]] && . /usr/share/zsh/vendor-completions/_fzf
+  fi
+fi
 
 # Add rust to path if it exists
 [[ -d ~/.cargo/bin ]] && path=(~/.cargo/bin $path)
 
-if [[ -x $(which nvim) ]]; then
+if [ $commands[nvim] ]; then
+  alias vi=nvim
   alias vim=nvim
+fi
+
+if [ $commands[kubectl] ]; then
+  source <(kubectl completion zsh)
 fi
