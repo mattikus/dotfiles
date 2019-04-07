@@ -29,6 +29,7 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 
+Plug 'rodjek/vim-puppet'
 Plug 'arcticicestudio/nord-vim'
 
 if has('nvim')
