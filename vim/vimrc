@@ -47,7 +47,7 @@ if has('nvim')
   Plug 'ncm2/ncm2-path'
   Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
 
-  if exists('##MenuPopupChanged')
+  if exists('##CompleteChanged')
     Plug 'ncm2/float-preview.nvim'
   endif
 
@@ -81,7 +81,7 @@ if !has('nvim')
 endif
 
 " Set 24bit color when appropriate
-if $COLORTERM == 'truecolor' || $TERM =~ '-256color'
+if has('termguicolors') && ($COLORTERM == 'truecolor' || $TERM =~ '-256color')
   set termguicolors
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -202,7 +202,7 @@ if has('nvim')
   set shortmess+=c
 
   let g:LanguageClient_serverCommands = {
-         \ 'go': ['bingo'],
+         \ 'go': ['~/go/bin/gopls'],
          \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
          \ }
 
